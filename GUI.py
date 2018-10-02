@@ -1,11 +1,15 @@
-from tkinter import*
-from Controller import Controller
+from tkinter import *
+from DataController import DataController
+from Synth import Synth
 import tkinter.simpledialog
+import sys
 
 class GUI:
 	def __init__(self):
 		window = Tk()
-		self.__controller = Controller() 													
+		
+		self.__dataController = DataController() 													
+		self.__synth = Synth()
 		
 		frame1 = Frame(window)
 		self.__frequencyLabel = Label(frame1, text = "")
@@ -20,7 +24,7 @@ class GUI:
 		self.__volumeLabel = Label(frame2, text = "")
 		self.__volume = StringVar()
 		volumeEntry = Entry(frame2, textvariable = self.__volume)
-		volumeButton = Button(frame2, text = "setVolume", command = self.setVolume)
+		volumeButton  = Button(frame2, text = "setVolume", command = self.setVolume)
 		self.__volumeLabel.pack()
 		volumeEntry.pack()
 		volumeButton.pack()
@@ -35,32 +39,43 @@ class GUI:
 		
 		
 		fileName = tkinter.simpledialog.askstring("New Session", "Enter a file name (a new one with the inputted name will be made if it doesnt exit)")
+		if fileName == None:
+			sys.exit()
 		self.__newSession(fileName)	
 		
 		window.mainloop()
 		
 	def __newSession(self, fileName):
-		self.__controller.receiver(str("o") + fileName)
+		data = self.__dataController.openFile(fileName)
+		for i in data:
+			if i[0] == 'v':
+				self.setVolume(i[1:])
+			else:
+				self.setFrequency(i[1:])
 		
-	def setFrequency(self):
-		frequencyValue = self.__frequency.get()
-		self.__frequencyLabel["text"] = frequencyValue
-		print(frequencyValue)
-		self.__controller.receiver(str("f") + frequencyValue)
+	def setFrequency(self, data = None):
+		if data == None:
+			data = self.__frequency.get()
+		self.__frequencyLabel["text"] = data
+		print(data)
+		self.__synth.setFrequency(data)
 		
 	
-	def setVolume(self):
-		volumeValue = self.__volume.get()
-		self.__volumeLabel["text"] = volumeValue
-		print(volumeValue)
-		self.__controller.receiver(str("v") + volumeValue)
+	def setVolume(self, data = None):
+		if data == None:
+			data = self.__volume.get()
+		self.__volumeLabel["text"] = data
+		print(data)
+		self.__synth.setVolume(data)
 	
+	def __getSynthState(self):
+		volume = 'v' + str(self.__synth.getVolume())
+		frequency = 'f' + str(self.__synth.getFrequency())
+		return [volume, frequency]
+		
 	def __save(self):
-		self.__controller.receiver("w")
+		state = self.__getSynthState()
+		self.__dataController.saveFile(state)
+		
 		
 gui = GUI()
-
-		
-
-		
-		

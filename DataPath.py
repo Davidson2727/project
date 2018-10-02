@@ -3,8 +3,12 @@ class DataPath:
 	def __init__(self):
 		self.__dataState = []
 		self.__fileName = ""
+		
 	def getDataState(self):
 		return self.__dataState
+		
+	def setDataState(self, state)
+		self.__dataState = state
 		
 	def processDataFileName(self, fileName):
 		print("here")
@@ -32,6 +36,8 @@ class DataPath:
 			file.write(str(i) + "\n")
 		file.close()
 	
+	def getDataStateLength(self):
+		return len(self.__dataState)
 	
 	
 		
