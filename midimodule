@@ -1,0 +1,20 @@
+from pyo import*
+from midimodule import
+
+# Server initilization
+s = Server()
+s.setMidiInputDevice(1) #scans for all possible midi devices
+s.boot()
+s.start()
+
+# Notein function passes midi input into midi variable
+midi = Notein() 
+
+# adsr
+amp = MidiAdsr(midi['velocity'])
+
+#MToF converts midi note input number to its respective note's frequency, assigns it to pitch
+pitch = MToF(midi['pitch'])
+
+
+s.gui(locals())
