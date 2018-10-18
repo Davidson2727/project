@@ -1,17 +1,11 @@
 from pyo import *
 
-class Server:
+class Starter:
 
-    #Create pyo audio server
-    s = Server()
-
-    #Constructor to create Server object and set midi channel
+    #Create Server and set midi channel
     def __init__(self, devIn):
         self.__devIn = devIn
-        # self.s = None
-
-    # def createServer(self):
-    #     self.s = Server()
+        self.s = Server()
 
     def getDevIn(self):
         return self.__devIn
@@ -19,10 +13,11 @@ class Server:
     def getServer(self):
         return self.s
 
+    #Run output with WXPython GUI
     def toGui(self):
         self.s.gui(locals())
 
-    #method to start Server
+    #Set midi channel value for server, load and start Server
     def startServer(self):
         self.s.setMidiInputDevice(self.getDevIn())
         self.s.boot()

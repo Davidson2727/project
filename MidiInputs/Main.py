@@ -3,6 +3,6 @@ from Midi.ChainInToOut import ChainInToOut
 
 def main():
 
-    x = ChainInToOut()
+    ChainInToOut()
 
 main()

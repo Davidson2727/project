@@ -2,8 +2,7 @@ from pyo import *
 
 class MidiInput:
 
-
-
+    #Assign input channel and place holders for input values
     def __init__(self, devIn):
         self.__devIn = devIn
         self.midi = None
@@ -19,6 +18,7 @@ class MidiInput:
     def getAmp(self):
         return self.amp
 
+    #Prep Pyo to accept midi input, convert input to freq and amplitude
     def midiToFreq(self):
         self.midi = Notein()
         self.pitch = MToF(self.midi['pitch'])
