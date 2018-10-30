@@ -8,6 +8,7 @@ class MidiInput:
         self.midi = None
         self.pitch = None
         self.amp = None
+        self.s = Server()
 
     def getDevIn(self):
         return self.__devIn
@@ -17,6 +18,19 @@ class MidiInput:
 
     def getAmp(self):
         return self.amp
+
+    def getServer(self):
+        return self.s
+
+    #Run output with WXPython GUI
+    def toGui(self):
+        self.s.gui(locals())
+
+    #Set midi channel value for server, load and start Server
+    def startServer(self):
+        self.s.setMidiInputDevice(self.getDevIn())
+        self.s.boot()
+        self.s.start()
 
     #Prep Pyo to accept midi input, convert input to freq and amplitude
     def midiToFreq(self):

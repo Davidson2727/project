@@ -5,9 +5,10 @@ from pyo import *
 class MidiOutput:
 
     #Accept completed waveform here
-    def __init__(self, osc):
-        self.__osc = osc
+    def __init__(self, waveform):
+        self.__waveform = waveform
+
 
     #Output waveform as audio
-    def oscOut(self):
-        self.__osc.out()
+    def waveformOut(self):
+        self.__waveform.out()
