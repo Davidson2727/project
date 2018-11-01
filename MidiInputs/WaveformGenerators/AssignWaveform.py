@@ -35,16 +35,19 @@ class AssignWaveform:
             else:
                 self.__newWave = self.__listWaves.getWaveform(self.temp)
                 self.__userWave.addWave(self.__newWave)
-                finished = True
+                # finished = True
 
     #Creates completed waveform from user selection or non-selection
     def feedWave(self):
 
         #If the user doesn't pick a waveform then default to a simple Sine wave
         if self.__userWave.getLength() == 0:
-            self.__waveform = Sin(self.__pitch, self.__amp)
-            self.__waveform.set()
-            return self.__waveform
+            # self.__waveform = Sin(self.__pitch, self.__amp)
+            # self.__waveform.set()
+            # return self.__waveform
+            self.__userWave.addWave(Sin(self.__pitch, self.__amp))
+            self.__userWave.readIndex(0).set()
+            return self.__userWave
 
         else:
 
@@ -66,11 +69,27 @@ class AssignWaveform:
             #that waveform will be passed to the BuildFXChain
             else:
 
-                for i in range(self.__userWave.getLength()):
-                    print (str(i) + ": " + self.__userWave.readIndex(i).getName())
+                # for i in range(self.__userWave.getLength()):
+                #     if self.__userWave.readIndex(i).getIsActive() == True:
+                #         self.__userWave.readIndex(i).set()
+                #         self.__waveform = self.__userWave.readIndex(i).get()
+                #         self.__waveform.set()
+                # return self.__waveform
 
-                temp = input("Select from your list: ")
-                self.temp = int(temp)
-                self.__waveform = self.__userWave.readIndex(self.temp)
-                self.__waveform.set()
-                return self.__waveform
+                #THIS ONE WORKS
+                # for i in range(self.__userWave.getLength()):
+                #     print (str(i) + ": " + self.__userWave.readIndex(i).getName())
+                #
+                # temp = input("Select from your list: ")
+                # self.temp = int(temp)
+                # self.__waveform = self.__userWave.readIndex(self.temp)
+                # self.__waveform.set()
+                # return self.__waveform
+
+                #THIS ONE MIGHT WORK FOR MULTIPLE WAVEFORMS
+                for i in range(self.__userWave.getLength()):
+                    self.__userWave.readIndex(i).set()
+                return self.__userWave
+
+                #For multiple waveforms we need to return an array or set
+                #waveform objects to ChainInToOut

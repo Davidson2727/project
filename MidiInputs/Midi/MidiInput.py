@@ -1,4 +1,5 @@
 from pyo import *
+import platform
 
 class MidiInput:
 
@@ -28,9 +29,16 @@ class MidiInput:
 
     #Set midi channel value for server, load and start Server
     def startServer(self):
-        self.s.setMidiInputDevice(self.getDevIn())
-        self.s.boot()
-        self.s.start()
+        if platform.system() != 'Linux':
+            self.s.setMidiInputDevice(self.getDevIn())
+            self.s.boot()
+            self.s.start()
+        else:
+            self.s.setMidiInputDevice(self.getDevIn())
+            self.s.setOutputDevice(8)
+            self.s.setMidiOutputDevice(8)
+            self.s.boot()
+            self.s.start()
 
     #Prep Pyo to accept midi input, convert input to freq and amplitude
     def midiToFreq(self):

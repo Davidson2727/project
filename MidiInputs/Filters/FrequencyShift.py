@@ -1,6 +1,6 @@
 from pyo import *
 
-class Chor:
+class FrequencyShift:
 
     def __init__(self):
         self.filter = None
@@ -10,7 +10,7 @@ class Chor:
         return self.filter
 
     def set(self, filter):
-        self.filter = Chorus(filter)
+        self.filter = FreqShift(filter)
 
     def getIsActive(self):
         return self.isActive
@@ -20,5 +20,3 @@ class Chor:
             self.isActive == False
         else:
             self.isActive == True
-
-    

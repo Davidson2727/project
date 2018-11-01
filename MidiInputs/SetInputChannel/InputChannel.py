@@ -9,5 +9,6 @@ class InputChannel:
         return self.devIn
 
     def setDevIn(self):
-        temp = input(pm_list_devices())
+        pm_list_devices()
+        temp = input("Select midi device: ")
         self.devIn = int(temp)

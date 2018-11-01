@@ -4,6 +4,7 @@ from Midi.MidiInput import MidiInput
 from WaveformGenerators.AssignWaveform import AssignWaveform
 from Filters.BuildFXChain import BuildFXChain
 from Midi.MidiOutput import MidiOutput
+from Midi.MultiWaveChain import MultiWaveChain
 
 #Class to facilitate Pyo midi Order of Ops
 class ChainInToOut:
@@ -26,23 +27,20 @@ class ChainInToOut:
         waveform.selectWave()
         #newWaveForm must be assigned to a waveform Object not a complete waveform
         #Completed waveforms are defined within each waveform Object
-        newWaveform = waveform.feedWave()
+        waveArray = waveform.feedWave()
 
-        #Accept user input to Chain Filters
-        #If newWaveform were a waveform rather than a waveform Object
-        #the .get() command would not work properly
-        filterChain = BuildFXChain(newWaveform.get())
-        filterChain.selectFilters()
+        #Create MultiWaveChain object to facilitate filter chain
+        #filter chain applies for each selected waveform
 
-        # #User will define filter order between lines 34 and 48
-        # #Filters applied to waveform through list iteration
-        # #Contains Loop to pass waveform
-        # #Generic getters and setters (probably to be renamed) will allow
-        # #loop to apply a filter at an index and pass that index's new waveform
-        # #to the next index
+        finalWaves = MultiWaveChain(waveArray)
+        finalWaves.selFilters()
+        finalWaves.finalOut()
+
+        # filterChain = BuildFXChain(newWaveforms.get())
+        # filterChain.selectFilters()
 
         #self.__waveform from BuildFXChain goes here
-        finalWaveform = filterChain.feedFilters()
-        midiOut = MidiOutput(finalWaveform)
-        midiOut.waveformOut()
+        # finalWaveform = filterChain.feedFilters()
+        # midiOut = MidiOutput(finalWaveform)
+        # midiOut.waveformOut()
         midiDevice.toGui()
