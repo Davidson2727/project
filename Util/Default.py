@@ -2,14 +2,8 @@ from pyo import *
 from Waves.Wave import Wave
 
 class Default:
-    print('################################')
-    print('SynthObject line 6')
-    print('################################')
 
     def __init__(self, _pitch, _amp, _userWaves):
-        print('################################')
-        print('Default line 11')
-        print('################################')
         self.__pitch = _pitch
         self.__amp = _amp
         self.__userWaves = _userWaves
