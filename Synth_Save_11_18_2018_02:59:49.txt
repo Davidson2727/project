@@ -1,4 +1,0 @@
-#SynthObject SynthObject
-createDate 11_18_2018_02:59:49
-fileName Synth_Save
-#NewUserWaves NewUserWaves

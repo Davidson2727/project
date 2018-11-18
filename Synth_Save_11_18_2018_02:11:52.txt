@@ -1,3 +1,0 @@
-#SynthObject SynthObject
-createDate 11_18_2018_02:11:52
-fileName Synth_Save
