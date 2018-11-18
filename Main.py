@@ -8,14 +8,8 @@ def main():
     # Begin()
     classID = "Main"
     run = True
-    print('################################')
-    print('Main line 12')
-    print('################################')
     TerminalGUI()
     run = False
-    print('################################')
-    print('Main line 17')
-    print('################################')
     Router(classID, run)
 
 main()

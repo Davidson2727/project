@@ -8,9 +8,6 @@ class SynthObject:
 
     #Generates synObject attributes
     def __init__ (self):
-        print('################################')
-        print('synthObject line 12')
-        print('################################')
         self.__pitch = None
         self.__amp = None
         self.__wave = None
@@ -18,9 +15,6 @@ class SynthObject:
         self.__newSession = True
         self.__midiDevice = MidiDevice()
         self.__userWaves = NewUserWaves()
-        print('################################')
-        print('synthObject line 22')
-        print('################################')
 
     #Allows user to set the midi input device.
     def setInputChannel(self, _input):
@@ -47,38 +41,17 @@ class SynthObject:
 
     #Loads synth environment with default parameters.
     def default(self):
-        print('################################')
-        print('synthObject line 51')
-        print('################################')
         self.setInputChannel(99)
-        print('################################')
-        print('synthObject line 55')
-        print('################################')
         self.setOutputChannel(99)
-        print('################################')
-        print('synthObject line 59')
-        print('################################')
         self.serverStart()
-        print('################################')
-        print('synthObject line 63')
-        print('################################')
         defSynth = Default(self.__midiDevice.getPitch(), self.__midiDevice.getAmp(), self.__userWaves)
         self.__userWaves = defSynth.getUserWaves()
         self.__wave = defSynth.getWave()
         self.__output = ToOutput(self.__userWaves, self.__newSession)
         self.__newSession = False
-        print('################################')
-        print('synthObject line ')
-        print('################################')
 
     def serverStart(self):
-        print('################################')
-        print('synthObject line 76')
-        print('################################')
         self.__midiDevice.bootServer()
-        print('################################')
-        print('synthObject line 80')
-        print('################################')
         self.__midiDevice.startServer()
         self.__midiDevice.midiToFreq()
 
