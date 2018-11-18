@@ -5,6 +5,10 @@ class Chor:
     def __init__(self):
         self.filter = None
         self.isActive = True
+        self.__name = "Chor"
+
+    def getName(self):
+        return self.__name
 
     def get(self):
         return self.filter
@@ -20,5 +24,3 @@ class Chor:
             self.isActive == False
         else:
             self.isActive == True
-
-    

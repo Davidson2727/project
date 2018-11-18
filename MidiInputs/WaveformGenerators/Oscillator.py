@@ -11,7 +11,7 @@ class Oscillator:
     def __init__(self, pitch, amp):
         self.__pitch = pitch
         self.__amp = amp
-        self.__name = "Oscillator"
+        self.__name = "Osc"
         self.waveform = None
         self.isActive = True
 

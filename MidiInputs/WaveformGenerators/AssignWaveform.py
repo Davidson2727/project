@@ -1,6 +1,7 @@
 from pyo import *
 from WaveformGenerators.ListWaves import ListWaves
-from WaveformGenerators.UserWave import UserWave
+# from WaveformGenerators.UserWave import UserWave
+from WaveformGenerators.NewUserWaves import NewUserWaves
 from WaveformGenerators.Sin import Sin
 
 #Class performs similar function to BuildFXChain
@@ -11,7 +12,7 @@ class AssignWaveform:
         self.__pitch = pitch
         self.__amp = amp
         self.__listWaves = ListWaves(self.__pitch, self.__amp)
-        self.__userWave = UserWave()
+        self.__userWave = NewUserWaves()
         self.__waveform = None
         self.temp = 0
         self.__newWave = None
@@ -60,6 +61,7 @@ class AssignWaveform:
                 if self.__userWave.readIndex(i).getIsActive() == True:
                     activeWaves = True
 
+            #If all waves are inactive work with a new standard waveform
             if activeWaves == False:
                 self.__waveform = Sin(self.__pitch, self.__amp)
                 self.__waveform.set()

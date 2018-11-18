@@ -6,7 +6,7 @@ class Sin:
     def __init__(self, pitch, amp):
         self.__pitch = pitch
         self.__amp = amp
-        self.__name = "Sine"
+        self.__name = "Sin"
         self.waveform = None
         self.isActive = True
 

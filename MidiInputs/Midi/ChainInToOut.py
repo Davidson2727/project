@@ -21,6 +21,10 @@ class ChainInToOut:
         midiDevice.startServer()
         midiDevice.midiToFreq()
 
+        #Spur off between load and start new HERE
+        #Add helper classes to facilitate the rest of what this class currently does
+        #
+
 
         #Give waveform generator Pitch and amplitude values
         waveform = AssignWaveform(midiDevice.getPitch(), midiDevice.getAmp())

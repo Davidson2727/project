@@ -5,6 +5,10 @@ class Distortion:
     def __init__(self):
         self.filter = None
         self.isActive = True
+        self.__name = "Dist"
+
+    def getName(self):
+        return self.__name
 
     def get(self):
         return self.filter
