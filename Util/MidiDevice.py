@@ -10,13 +10,9 @@ class MidiDevice:
         self.__pitch = None
         self.__amp = None
         if platform.system() == 'Linux':
-            print('################################')
-            print('set the system for Linux')
-            print('################################')
             self.__s = Server(duplex = 0)
         else:
             self.__s = Server()
-        self.__s.boot()
 
     def getDevice(self):
         return self.__device
@@ -49,7 +45,11 @@ class MidiDevice:
 
     #Set midi channel value for server, load and start Server
     def bootServer(self):
-        pass
+        if platform.system() == 'Linux':
+            self.__s = Server(duplex = 0)
+        else:
+            self.__s = Server()
+        self.__s.boot()
 
     def startServer(self):
         self.__s.start()
