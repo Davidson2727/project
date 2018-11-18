@@ -2,9 +2,10 @@ from Util.MidiDevice import MidiDevice
 from Util.Default import Default
 from Util.ToOutput import ToOutput
 from Waves.NewUserWaves import NewUserWaves
+from Data.file import file
 
 
-class SynthObject:
+class SynthObject(file):
 
     #Generates synObject attributes
     def __init__ (self):
@@ -14,7 +15,13 @@ class SynthObject:
         self.__output = None
         self.__newSession = True
         self.__midiDevice = MidiDevice()
-        self.__userWaves = NewUserWaves()
+        self._userWaves = NewUserWaves()
+
+    def __dir__(self):
+        parentAttr = super().__dir__()
+        parentAttr.append('_userWaves')
+        print(parentAttr)
+        return parentAttr
 
     #Allows user to set the midi input device.
     def setInputChannel(self, _input):
@@ -44,7 +51,7 @@ class SynthObject:
         self.setInputChannel(99)
         self.setOutputChannel(99)
         self.serverStart()
-        defSynth = Default(self.__midiDevice.getPitch(), self.__midiDevice.getAmp(), self.__userWaves)
+        defSynth = Default(self.__midiDevice.getPitch(), self.__midiDevice.getAmp(), self._userWaves)
         self.__userWaves = defSynth.getUserWaves()
         self.__wave = defSynth.getWave()
         self.__output = ToOutput(self.__userWaves, self.__newSession)

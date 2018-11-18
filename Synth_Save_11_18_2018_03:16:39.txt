@@ -1,0 +1,4 @@
+#SynthObject SynthObject
+#NewUserWaves NewUserWaves
+createDate 11_18_2018_03:16:39
+fileName Synth_Save

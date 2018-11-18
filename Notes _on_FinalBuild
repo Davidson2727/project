@@ -1,0 +1,9 @@
+The chain of events when the app starts from main:
+
+main>TerminalGui>router>synthController>synthObject>default
+
+at this point we are setting up a defaults synth object, I think we should just use
+synthObject's init. Or is this the only way to have a global object?
+
+
+also it seems like we are kicking off the app with a view. should we be using a controller instead?
