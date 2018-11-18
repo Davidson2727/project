@@ -7,3 +7,9 @@ synthObject's init. Or is this the only way to have a global object?
 
 
 also it seems like we are kicking off the app with a view. should we be using a controller instead?
+
+
+to get the save function to work properly private members for the synthObject class denoted by
+leading '__' need to be set to protected members with '_'. 
+Since they are being accessed by other classes they should not all be private,
+but should some of them be public?
