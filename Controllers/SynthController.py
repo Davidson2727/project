@@ -7,15 +7,6 @@ class SynthController:
     def __init__(self, _input):
 
         if (_input == True):
-            print('################################')
-            print('SynthController line 11')
-            print('################################')
             Config.synthObject.default()
-            print('################################')
-            print('SynthObject line 15')
-            print('################################')
         else:
             Config.synthObject.kill()
-            print('################################')
-            print('SynthController line 20')
-            print('################################')
