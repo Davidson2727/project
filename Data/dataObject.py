@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from Data.translator import translator
+from translator import *
 
 class dataObj:
     def create(self):

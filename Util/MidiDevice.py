@@ -10,7 +10,7 @@ class MidiDevice:
         self.__pitch = None
         self.__amp = None
         if platform.system() == 'Linux':
-            self.__s = Server(duplex = 0)
+            self.__s = Server(audio = 'jack')
         else:
             self.__s = Server()
 
@@ -38,8 +38,8 @@ class MidiDevice:
 
     def setOut(self):
         if platform.system() == 'Linux':
-            self.__s.setOutputDevice(self.__device)
-            self.__s.setMidiOutputDevice(self.__device)
+            self.__s.setOutputDevice(8)
+            self.__s.setMidiOutputDevice(8)
         else:
             pass
 
