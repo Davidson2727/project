@@ -4,6 +4,7 @@ from Util.EditVoice import EditVoice
 from Util.ToOutput import ToOutput
 from Util.ToggleVoice import ToggleVoice
 from Util.EditFilter import EditFilter
+from Util.ToggleFilter import ToggleFilter
 from Waves.NewUserWaves import NewUserWaves
 
 
@@ -38,7 +39,11 @@ class SynthObject:
         self.__output.midiOutPut()
 
     def toggleFilter(self, _classID, _input):
-        pass
+        filter = ToggleFilter(self.__userWaves, _classID, _input)
+        self.__userWaves = filter.getUserWaves()
+        self.__output.setUserWaves(self.__userWaves)
+        self.__output.filterAudio(self.__newSession)
+        self.__output.midiOutPut()
 
     #Loads synth environment with selected filters.
     def editFilter(self, _classID, _input):

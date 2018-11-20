@@ -35,6 +35,9 @@ class NewUserWaves:
     def getFilters(self, _i):
         return self.__filterList[_i]
 
+    def setIsActiveFilter(self, _i, _input):
+        self.__filterList[_i].setIsActive(_input)
+
     def getFilterList(self, _i, _j):
         return self.__filterList[_i].readIndex(_j)
 
