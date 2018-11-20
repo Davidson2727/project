@@ -13,6 +13,7 @@ class MidiDevice:
             self.__s = Server(duplex = 0)
         else:
             self.__s = Server()
+        # self.__s.boot()
 
     def getDevice(self):
         return self.__device
@@ -46,6 +47,7 @@ class MidiDevice:
     #Set midi channel value for server, load and start Server
     def bootServer(self):
         self.__s.boot()
+        # pass
 
     def startServer(self):
         self.__s.start()

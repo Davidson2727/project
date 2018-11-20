@@ -1,10 +1,24 @@
+from Controllers.Router import Router
+
 class SelectWave:
 
-    def __init__(self):
+    def __init__(self, _classID):
         self.__temp = None
-        print("0: exit\n1: Oscillator\n2: Sine\n3: SuperSaw")
+        self.__classID = _classID
+        print("1: exit\n2: Oscillator\n3: Sine\n4: SuperSaw")
         temp = input("Select waveform: ")
         self.__temp = int(temp)
+
+        if (self.__temp == 1):
+            pass
+        elif (self.__temp == 2):
+            Router(self.__classID, self.__temp - 1)
+        elif (self.__temp == 3):
+            Router(self.__classID, self.__temp - 1)
+        elif (self.__temp == 4):
+            Router(self.__classID, self.__temp - 1)
+        else:
+            pass
 
     def getTemp(self):
         return self.__temp

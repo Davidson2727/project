@@ -10,7 +10,7 @@ class Menu2:
         if (self.__temp == 1):
             pass
         elif (self.__temp == 2):
-            pass
+            SelectVoice()
         elif (self.__temp == 3):
             pass
         elif (self.__temp == 4):
