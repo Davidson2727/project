@@ -1,11 +1,10 @@
 from pyo import *
-# from NewLoad.Begin import Begin
 from TerminalPrompts.TerminalGUI import TerminalGUI
 from Controllers.Router import Router
 
+#Launches GUI and ends synth processes
 def main():
 
-    # Begin()
     classID = "Main"
     run = True
     TerminalGUI()

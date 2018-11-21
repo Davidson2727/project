@@ -1,5 +1,4 @@
 from pyo import *
-from Util.MidiOutput import MidiOutput
 
 #This class routes the default synth environment and
 #custom synth environments to the audio output.
@@ -18,8 +17,6 @@ class ToOutput:
 
     def setUserWaves(self, _userWaves):
         self.__userWaves = _userWaves
-        ##
-        print("&&&&&&&&&&&&&&&")
 
     #Takes all default or user selected waveforms and filters
     #and adds them to an array in preparation for output.
@@ -32,24 +29,15 @@ class ToOutput:
         #of any overwritten waveforms and bypassing any inactive waves or filters.
         else:
             for i in range(self.__userWaves.getLength()):
-                ##
-                print("&&&&&&&&&&&&&&&")
                 if (self.__userWaves.readIndex(i) != None):
                     if (self.__userWaves.getIsActive(i) == True):
                         if (self.__waveOutArray[i] != None):
                             self.__waveOutArray[i].stop()
                         self.__waveOutArray[i] = self.__userWaves.readIndex(i).get()
-                        ##
-                        print("&&&&&&&&&&&&&&&")
+
                         for j in range(self.__userWaves.getFilters(i).getLength()):
-                            ##
-                            print("&&&&&&&&&&&&&&&")
                             if (self.__userWaves.getFilterList(i, j) != None):
-                                ##
-                                print("&&&&&&&&&&&&&&&")
                                 if (self.__userWaves.getFilters(i).getIsActive(j) == True):
-                                    ##
-                                    print("&&&&&&&&&&&&&&&")
                                     if (self.__filtOutArray[i][j] != None):
                                         self.__filtOutArray[i][j].stop()
                                     self.__filtOutArray[i][j] = self.__userWaves.getFilterList(i, j).get()

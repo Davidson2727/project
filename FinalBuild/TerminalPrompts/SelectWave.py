@@ -11,10 +11,13 @@ class SelectWave:
 
         if (self.__temp == 1):
             pass
+        #Tells Router to assign selected waveform.
         elif (self.__temp == 2):
             Router(self.__classID, self.__temp - 1)
+        #Tells Router to assign selected waveform.
         elif (self.__temp == 3):
             Router(self.__classID, self.__temp - 1)
+        #Tells Router to assign selected waveform.
         elif (self.__temp == 4):
             Router(self.__classID, self.__temp - 1)
         else:

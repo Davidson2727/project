@@ -5,6 +5,9 @@ from Util.ToOutput import ToOutput
 from Util.ToggleVoice import ToggleVoice
 from Util.EditFilter import EditFilter
 from Util.ToggleFilter import ToggleFilter
+from Util.NewSynth import NewSynth
+from Util.EmptyVoice import EmptyVoice
+from Util.EmptyFilter import EmptyFilter
 from Waves.NewUserWaves import NewUserWaves
 
 
@@ -25,34 +28,48 @@ class SynthObject:
     def toggleVoice(self, _voice):
         voice = ToggleVoice(self.__userWaves, _voice)
         self.__userWaves = voice.getUserWaves()
-        self.__output.setUserWaves(self.__userWaves)
-        self.__output.filterAudio(self.__newSession)
-        self.__output.midiOutPut()
+        self.out()
 
     #Loads synth environment with selected waveforms
     def editWave(self, _voice, _input):
         newWaves = EditVoice(self.__userWaves, self.__waves, _voice, _input)
         self.__userWaves = newWaves.getUserWaves()
         # self.__waves = newWaves.getWaves()
-        self.__output.setUserWaves(self.__userWaves)
-        self.__output.filterAudio(self.__newSession)
-        self.__output.midiOutPut()
+        self.out()
 
+    #Removes selected voice
+    def removeVoice(self, _voice):
+        emptyVoice = EmptyVoice(self.__userWaves, _voice)
+        self.__userWaves = emptyVoice.getUserWaves()
+        self.out()
+
+    #Sets selected filter to Active or Inactive
     def toggleFilter(self, _classID, _input):
         filter = ToggleFilter(self.__userWaves, _classID, _input)
         self.__userWaves = filter.getUserWaves()
-        self.__output.setUserWaves(self.__userWaves)
-        self.__output.filterAudio(self.__newSession)
-        self.__output.midiOutPut()
+        self.out()
 
     #Loads synth environment with selected filters.
     def editFilter(self, _classID, _input):
         newFilter = EditFilter(self.__userWaves, self.__filters, _classID, _input)
         self.__userWaves = newFilter.getUserWaves()
+        self.out()
+
+    def removeFilter(self, _classID):
+        emptyFilter = EmptyFilter(self.__userWaves, _classID)
+        self.__userWaves = emptyFilter.getUserWaves()
+        self.out()
+
+    #Sets all waveforms and filters to None and reloads the Default synth environment
+    def buildNewSynth(self):
+        newSynth = NewSynth(self.__userWaves)
+        self.__userWaves = newSynth.getUserWaves()
+        self.out()
+
+    def out(self):
         self.__output.setUserWaves(self.__userWaves)
         self.__output.filterAudio(self.__newSession)
         self.__output.midiOutPut()
-
 
     #Loads synth environment with default parameters.
     def default(self):

@@ -4,11 +4,12 @@ from collections import OrderedDict
 class Filter:
 
     def __init__(self):
-            self.__filterList = OrderedDict([(0,None),(0,None),(0,None),(0,None),(0,None),(0,None)])
-            self.__waveform = None
-            # self.__isActive = True
-            self.__name = None
+        self.__filterList = OrderedDict([(0,None),(0,None),(0,None),(0,None),(0,None),(0,None)])
+        self.__waveform = None
+        self.__name = None
 
+    #After filters are selected from the default synth environment this function populates
+    #self.__filterList with Pyo filter objects
     def setFilterList(self, _wave):
         if(_wave != None):
             self.__filterList = OrderedDict([(0,None),(1,Chorus(_wave)),
@@ -25,14 +26,6 @@ class Filter:
     def get(self):
         return self.__waveform
 
+    #Assigns the appropriate filter in self.__filterList to self.__waveform.
     def set(self, _input):
         self.__waveform = self.__filterList[_input]
-
-    # def getIsActive(self):
-    #     return self.__isActive
-
-    # def setIsActive(self):
-    #     if self.__isActive == True:
-    #         self.__isActive == False
-    #     else:
-    #         self.__isActive == True

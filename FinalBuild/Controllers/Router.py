@@ -4,6 +4,7 @@ from Controllers.OutController import OutController
 from Controllers.ServerController import ServerController
 from Controllers.VoiceController import VoiceController
 from Controllers.FilterController import FilterController
+from Controllers.NewSynthController import NewSynthController
 
 #Router class sends input data from specific loctions throughout
 #the GUI to the appropriate controller.
@@ -14,8 +15,10 @@ class Router:
             SynthController(_input)
         elif (_classID == "TerminalGUI"):
             SynthController(_input)
-        elif(_classID == "MainMenu"):
+        elif (_classID == "MainMenu"):
             ServerController()
+        elif (_classID == "Menu2"):
+            NewSynthController()
         elif (_classID == "InputChannel"):
             InController(_input)
         elif (_classID == "OutputChannel"):

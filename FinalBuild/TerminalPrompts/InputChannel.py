@@ -9,6 +9,7 @@ class InputChannel:
         pm_list_devices()
         temp = input("Make a selection: ")
         self.__temp = int(temp)
+        #Tells Router the input channel needs to be changed.
         Router(self.__classID, self.__temp)
 
 

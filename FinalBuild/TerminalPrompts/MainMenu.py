@@ -15,6 +15,7 @@ class MainMenu:
             Menu1()
         elif (self.__temp == 3):
             Menu2()
+        #Tells Router the server needs to be rebooted.
         elif (self.__temp == 4):
             Router(self.__classID, self.__temp)
         else:

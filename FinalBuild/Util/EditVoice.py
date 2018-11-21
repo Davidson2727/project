@@ -11,17 +11,15 @@ class EditVoice:
 
         #Routes selected waveform to the specified index in NewUserWaves.py.
         if (_voice == "Voice1"):
-            self.__waves[0].set(_input)
-            self.__userWaves.setWave(0, self.__waves[0])
+            self.edit(0, _input)
         elif (_voice == "Voice2"):
-            self.__waves[1].set(_input)
-            self.__userWaves.setWave(1, self.__waves[1])
+            self.edit(1, _input)
         elif (_voice == "Voice3"):
-            self.__waves[2].set(_input)
-            self.__userWaves.setWave(2, self.__waves[2])
+            self.edit(2, _input)
 
     def getUserWaves(self):
         return self.__userWaves
 
-    # def getWaves(self):
-    #     return self.__waves
+    def edit(self, _i, _input):
+        self.__waves[_i].set(_input)
+        self.__userWaves.setWave(_i, self.__waves[_i])

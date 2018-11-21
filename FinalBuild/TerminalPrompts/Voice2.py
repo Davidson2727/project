@@ -8,7 +8,7 @@ class Voice2:
     def __init__(self):
         self.__temp = None
         self.__classID = "Voice2"
-        print("1: exit\n2: Select Waveform\n3: Select Filters\n4: Toggle Active/Inactive")
+        print("1: exit\n2: Select Waveform\n3: Select Filters\n4: Toggle Active/Inactive\n5: Remove")
         temp = input("Make a selection: ")
         self.__temp = int(temp)
 
@@ -18,7 +18,11 @@ class Voice2:
             SelectWave(self.__classID)
         elif (self.__temp == 3):
             SelectFilterPos(self.__classID)
+        #Tells Router to toggle isActive state.
         elif (self.__temp == 4):
+            Router(self.__classID, self.__temp)
+        #Tells Router to remove selected voice.
+        elif (self.__temp == 5):
             Router(self.__classID, self.__temp)
         else:
             pass
