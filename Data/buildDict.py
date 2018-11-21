@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from setType import writeType
+from Data.setType import writeType
 def buildDict(_obj):
     # create an OrderedDict object
     myDict = OrderedDict()
@@ -31,11 +31,9 @@ def buildDict(_obj):
             # iterate through the list
             newList = []
             for j in range(len(v)):
-                #v[j] = v[j].__class__.__name__
-                #print('v[j] is',v[j])
-                #print('type of v[j] is',type(v[j]))
-                pass
-            myDict[i] = v
+                newList.append(v[j])
+                newList.append(writeType(v[j]))
+            myDict[i] = newList
         # if the value is primitive add this to the dictionary
         elif primitive == True:
             myDict[i] = v

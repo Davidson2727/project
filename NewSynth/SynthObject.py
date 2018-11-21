@@ -20,7 +20,6 @@ class SynthObject(file):
     def __dir__(self):
         parentAttr = super().__dir__()
         parentAttr.append('_userWaves')
-        print(parentAttr)
         return parentAttr
 
     #Allows user to set the midi input device.

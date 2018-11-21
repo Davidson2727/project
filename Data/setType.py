@@ -1,5 +1,5 @@
-from child import *
-import inspect
+
+import math
 
 
 def readType(_value,_type):
@@ -18,12 +18,14 @@ def readType(_value,_type):
         for i in range(len(value)):
             value[i] = value[i].strip()
             value[i] = value[i].strip("'")
-        print('in readType: print return list',value)
         z=0
+        listLength = math.ceil(len(value)/2)
         returnList = []
-        while z <=len(value)/2:
+        while z <= listLength:
             returnList.append(readType(value[z],value[z+1]))
             z+=2
+
+
         return returnList
     else:
         return _value

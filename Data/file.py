@@ -1,10 +1,10 @@
-from dataObject import dataObj
+from Data.dataObject import dataObj
 from collections import OrderedDict
-from translator import translator
-from makeDate import makeDate
-from setType import readType, writeType
-from buildDict import buildDict
-from buildObj import buildObject
+from Data.translator import translator
+from Data.makeDate import makeDate
+from Data.setType import readType, writeType
+from Data.buildDict import buildDict
+from Data.buildObj import buildObject
 
 class file(dataObj):
     def __init__(self):
@@ -45,13 +45,8 @@ class file(dataObj):
             for i in lines:
                 keyValue = i.split('~')
                 if keyValue[1][0] == '#':
-                    print('\n\n\n############################')
-                    print('buildObject')
                     buildObject(keyValue[1],keyValue[2],keyValue[3])
-                    print('############################')
                 if hasattr(self,keyValue[1]):
+
                     keyValue[2] = readType(keyValue[2],keyValue[3])
                     setattr(self,keyValue[1],keyValue[2])
-                else:
-
-                    print('no attr by that name',keyValue[1])

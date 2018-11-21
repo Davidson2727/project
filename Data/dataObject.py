@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from translator import *
+from Data.translator import *
 
 class dataObj:
     def create(self):
@@ -61,5 +61,4 @@ class dataObj:
                     myDict[key]=value
 
                 # return the dictionary to where is was called from
-        print(myDict)
         return myDict
