@@ -20,7 +20,7 @@ class Menu2:
         elif (self.__temp == 4):
             pass
         elif (self.__temp == 5):
-            pass
+            Router('TerminalGUI',self.__temp)
         else:
             pass
 

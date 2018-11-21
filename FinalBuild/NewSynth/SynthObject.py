@@ -9,9 +9,10 @@ from Util.NewSynth import NewSynth
 from Util.EmptyVoice import EmptyVoice
 from Util.EmptyFilter import EmptyFilter
 from Waves.NewUserWaves import NewUserWaves
+from Data.file import file
 
 
-class SynthObject:
+class SynthObject(file):
 
     #Generates synObject attributes
     def __init__ (self):
@@ -21,8 +22,13 @@ class SynthObject:
         self.__filters = [None] * 3
         self.__output = None
         self.__newSession = True
-        self.__midiDevice = MidiDevice()
-        self.__userWaves = NewUserWaves()
+        self._midiDevice = MidiDevice()
+        self._userWaves = NewUserWaves()
+
+    def __dir__(self):
+        parentAttr = super().__dir__()
+        parentAttr.append('_userWaves')
+        return parentAttr
 
     #Sets selected voice to Active or Inactive.
     def toggleVoice(self, _voice):
@@ -76,47 +82,47 @@ class SynthObject:
         self.setInputChannel(99)
         self.setOutputChannel(99)
         self.serverStart()
-        defSynth = Default(self.__midiDevice.getPitch(), self.__midiDevice.getAmp(), self.__userWaves)
+        defSynth = Default(self._midiDevice.getPitch(), self._midiDevice.getAmp(), self._userWaves)
         self.__userWaves = defSynth.getUserWaves()
         self.__waves = defSynth.getWaves()
         self.__filters = defSynth.getFilters()
-        self.__output = ToOutput(self.__userWaves, self.__newSession)
+        self.__output = ToOutput(self._userWaves, self.__newSession)
         self.__newSession = False
 
     #Allows user to set the midi input device.
     def setInputChannel(self, _input):
 
         if (self.__newSession == True):
-            self.__midiDevice.setDevice(_input)
-            self.__midiDevice.setIn()
+            self._midiDevice.setDevice(_input)
+            self._midiDevice.setIn()
         else:
-            self.__midiDevice.setDevice(_input)
-            self.__midiDevice.setIn()
+            self._midiDevice.setDevice(_input)
+            self._midiDevice.setIn()
             self.rebootServer()
-            self.__midiDevice.midiToFreq()
+            self._midiDevice.midiToFreq()
 
     #Allows user to set the midi output device.
     def setOutputChannel(self, _input):
         if (self.__newSession == True):
-            self.__midiDevice.setDevice(_input)
-            self.__midiDevice.setOut()
+            self._midiDevice.setDevice(_input)
+            self._midiDevice.setOut()
         else:
-            self.__midiDevice.setDevice(_input)
-            self.__midiDevice.setOut()
+            self._midiDevice.setDevice(_input)
+            self._midiDevice.setOut()
             self.rebootServer()
-            self.__midiDevice.midiToFreq()
+            self._midiDevice.midiToFreq()
 
     #Starts the default audio server.
     def serverStart(self):
-        self.__midiDevice.bootServer()
-        self.__midiDevice.startServer()
-        self.__midiDevice.midiToFreq()
+        self._midiDevice.bootServer()
+        self._midiDevice.startServer()
+        self._midiDevice.midiToFreq()
 
     #Reboots the audio server.
     def rebootServer(self):
-        self.__midiDevice.stopServer()
-        self.__midiDevice.startServer()
+        self._midiDevice.stopServer()
+        self._midiDevice.startServer()
 
     #Shuts down the audio server.
     def kill(self):
-        self.__midiDevice.stopServer()
+        self._midiDevice.stopServer()
