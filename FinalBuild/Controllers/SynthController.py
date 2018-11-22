@@ -8,6 +8,8 @@ class SynthController:
 
         if (_input == True):
             Config.synthObject.default()
+        elif(_input == 4):
+            Config.synthObject.loadSynth()
         elif(_input == 5):
             Config.synthObject.save()
         else:

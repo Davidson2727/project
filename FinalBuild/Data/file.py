@@ -40,7 +40,7 @@ class file(dataObj):
             f.write('~%s~%s~%s\n'%(k,v,vType))
         f.close()
 
-    def load(self,_path):
+    def load(self):
             lines = [line.rstrip('\n') for line in open('file2.txt')]
             for i in lines:
                 keyValue = i.split('~')

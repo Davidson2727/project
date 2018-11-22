@@ -18,6 +18,7 @@ class Menu2:
         elif (self.__temp == 3):
             Router(self.__classID, self.__temp)
         elif (self.__temp == 4):
+            Router('TerminalGUI',self.__temp)
             pass
         elif (self.__temp == 5):
             Router('TerminalGUI',self.__temp)

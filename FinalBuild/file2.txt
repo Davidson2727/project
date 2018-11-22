@@ -1,0 +1,5 @@
+~SynthObject~SynthObject~str
+~_saveFilters~[1, 'int', None, 'NoneType', None, 'NoneType', None, 'NoneType', None, 'NoneType', None, 'NoneType', None, 'NoneType', None, 'NoneType', None, 'NoneType', None, 'NoneType', None, 'NoneType', 2, 'int', None, 'NoneType', 2, 'int', None, 'NoneType']~list
+~_saveWaves~[None, 'NoneType', None, 'NoneType', None, 'NoneType']~list
+~createDate~11_21_2018_21:09:36~str
+~fileName~Synth_Save~str

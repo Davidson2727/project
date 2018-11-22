@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from Util import Config
 from pyo import *
 
 #Pyo emulation of Roland JP 8000 supersaw oscillator

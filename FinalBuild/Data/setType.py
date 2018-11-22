@@ -27,6 +27,8 @@ def readType(_value,_type):
 
 
         return returnList
+    elif _type == 'None':
+        return None
     else:
         return _value
 

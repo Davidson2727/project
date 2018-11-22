@@ -25,9 +25,13 @@ class SynthObject(file):
         self._midiDevice = MidiDevice()
         self._userWaves = NewUserWaves()
 
+        self._saveWaves = [None]*3
+        self._saveFilters = [None]*15
+
     def __dir__(self):
         parentAttr = super().__dir__()
-        parentAttr.append('_userWaves')
+        parentAttr.append('_saveWaves')
+        parentAttr.append('_saveFilters')
         return parentAttr
 
     #Sets selected voice to Active or Inactive.
@@ -68,9 +72,13 @@ class SynthObject(file):
 
     #Sets all waveforms and filters to None and reloads the Default synth environment
     def buildNewSynth(self):
-        newSynth = NewSynth(self.__userWaves)
+        newSynth = NewSynth(self.__userWaves,self._saveWaves,self._saveFilters)
         self.__userWaves = newSynth.getUserWaves()
+        self._saveWaves = newSynth.getSaveWaves()
+        self._saveFilters = newSynth.getSaveFilters()
         self.out()
+        print(self._saveWaves)
+        print(self._saveFilters)
 
     def out(self):
         self.__output.setUserWaves(self.__userWaves)
@@ -126,3 +134,16 @@ class SynthObject(file):
     #Shuts down the audio server.
     def kill(self):
         self._midiDevice.stopServer()
+
+    def loadSynth(self):
+        self.load()
+        print('######################################')
+        print('######################################')
+        print('self._saveFilters there are',len(self._saveFilters),'filters')
+        print(self._saveFilters)
+        print('######################################')
+        print('######################################')
+        print('self._saveWaves there are',len(self._saveWaves),'waves')
+        print(self._saveWaves)
+        print('######################################')
+        print('######################################')
