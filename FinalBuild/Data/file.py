@@ -1,6 +1,5 @@
 from Data.dataObject import dataObject
 from collections import OrderedDict
-from Data.translator import translator
 from Data.makeDate import makeDate
 from Data.setType import readType, writeType
 from Data.buildDict import buildDict
@@ -34,7 +33,7 @@ class file(dataObject):
 
     def save(self,saveCommand):
         self.setCreateDate()
-        self.setFileName('Synth_Save')
+        self.setFileName('Synth_Save2')
         self._contents = 'empty'
         self._type = 'empty'
         self._userName = 'empty'
