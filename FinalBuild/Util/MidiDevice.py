@@ -10,10 +10,10 @@ class MidiDevice:
         self.__pitch = None
         self.__amp = None
         if platform.system() == 'Linux':
-            self.__s = Server(audio ='jack')
+            self.__s = Server(duplex = 0)
         else:
             self.__s = Server()
-        # self.__s.boot()
+        self.__s.boot()
 
     def getDevice(self):
         return self.__device
@@ -35,7 +35,10 @@ class MidiDevice:
         self.__s.gui(locals())
 
     def setIn(self):
-        self.__s.setMidiInputDevice(self.__device)
+        if platform.system() == 'Linux':
+            self.__s.setMidiInputDevice(self.__device)
+        else:
+            self.__s.setMidiInputDevice(self.__device)
 
     def setOut(self):
         if platform.system() == 'Linux':
@@ -51,7 +54,7 @@ class MidiDevice:
         else:
             self.__s = Server()
         self.__s.boot()
-        
+
     def startServer(self):
         self.__s.start()
 

@@ -1,3 +1,4 @@
+#!/home/jak/.virtualenvs/340/bin/python
 from pyo import *
 from TerminalPrompts.TerminalGUI import TerminalGUI
 from Controllers.Router import Router

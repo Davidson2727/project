@@ -1,0 +1,8 @@
+file
+userId
+userName
+fileName
+createDate
+type
+contents
+activeStatus

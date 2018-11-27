@@ -1,0 +1,27 @@
+move the file to where it is going to stay permanently
+
+add shebang to the first line in main
+
+navigate to Main in terminal
+run the following chmod +x Main.py
+test the file by running ./Main.py
+
+create new blank plain text file on the desktop
+save it as 'someName'.desktop
+
+navigate to Desktop in terminal
+run chmod +x on the new .desktop file
+
+add the following lines 
+
+
+[Desktop Entry]
+Version= 1.o
+Name = Pyo-Synth
+Exec = /home/jak/Desktop/340_project/FinalBuild/FinalBuild/Main.py
+Icon = /home/jak/Desktop/340_project/FinalBuild/FinalBuild/Icon.jpeg
+Type = Application
+
+save the file, it should launch now.
+
+

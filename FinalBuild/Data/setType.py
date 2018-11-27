@@ -40,5 +40,6 @@ def writeType(_value):
     thisType =thisType[1].split()
     thisType =thisType[0].split('.')
     thisType = thisType[-1].replace("'",'')
+    thisType = '"'+thisType+'"'
 
     return thisType

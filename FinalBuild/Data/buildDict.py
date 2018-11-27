@@ -53,7 +53,7 @@ def buildDict(_obj):
             objList = []
             for key,value in objDict.items():
                 objList.append(key)
-                objList.append(value)
+                objList.append(str(value))
                 objList.append(writeType(value))
             myDict['#'+attrName] = objList
             # iterate through the subObjects dictionary and add it to

@@ -25,8 +25,9 @@ class SynthObject(file):
         self._midiDevice = MidiDevice()
         self._userWaves = NewUserWaves()
 
-        self._saveWaves = [None]*3
-        self._saveFilters = [None]*15
+        self._saveWaves = [0]*3
+        self._saveFilters = [0]*15
+
 
     def __dir__(self):
         parentAttr = super().__dir__()
@@ -63,6 +64,7 @@ class SynthObject(file):
     def editFilter(self, _classID, _input):
         newFilter = EditFilter(self.__userWaves, self.__filters, _classID, _input)
         self.__userWaves = newFilter.getUserWaves()
+
         self.out()
 
     def removeFilter(self, _classID):
@@ -137,13 +139,3 @@ class SynthObject(file):
 
     def loadSynth(self):
         self.load()
-        print('######################################')
-        print('######################################')
-        print('self._saveFilters there are',len(self._saveFilters),'filters')
-        print(self._saveFilters)
-        print('######################################')
-        print('######################################')
-        print('self._saveWaves there are',len(self._saveWaves),'waves')
-        print(self._saveWaves)
-        print('######################################')
-        print('######################################')
