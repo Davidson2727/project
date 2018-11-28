@@ -1,6 +1,6 @@
 from pyo import *
 from Controllers.Router import Router
-
+from Util.EnumerateData import UserInput
 
 class OutputChannel:
 
@@ -11,7 +11,7 @@ class OutputChannel:
         temp = input("Make a selection: ")
         self.__temp = int(temp)
         #Tells Router the Output channel needs to be changed.
-        Router(self.__classID, self.__temp)
+        Router(UserInput.OUTPUT.value, self.__temp)
 
     def getTemp(self):
         return self.__temp

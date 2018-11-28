@@ -1,38 +1,40 @@
+from Util.EnumerateData import UserInput
+
 class EmptyFilter:
 
     def __init__(self, _userWaves, _voice):
         self.__userWaves = _userWaves
 
-        if (_voice == "Voice1Filt1"):
-            self.__userWaves.getFilterList(0, 0).set(0)
-        elif (_voice == "Voice1Filt2"):
-            self.__userWaves.getFilterList(0, 1).set(0)
-        elif (_voice == "Voice1Filt3"):
-            self.__userWaves.getFilterList(0, 2).set(0)
-        elif (_voice == "Voice1Filt4"):
-            self.__userWaves.getFilterList(0, 3).set(0)
-        elif (_voice == "Voice1Filt5"):
-            self.__userWaves.getFilterList(0, 4).set(0)
-        elif (_voice == "Voice2Filt1"):
-            self.__userWaves.getFilterList(1, 0).set(0)
-        elif (_voice == "Voice2Filt2"):
-            self.__userWaves.getFilterList(1, 1).set(0)
-        elif (_voice == "Voice2Filt3"):
-            self.__userWaves.getFilterList(1, 2).set(0)
-        elif (_voice == "Voice2Filt4"):
-            self.__userWaves.getFilterList(1, 3).set(0)
-        elif (_voice == "Voice2Filt5"):
-            self.__userWaves.getFilterList(1, 4).set(0)
-        elif (_voice == "Voice3Filt1"):
-            self.__userWaves.getFilterList(2, 0).set(0)
-        elif (_voice == "Voice3Filt2"):
-            self.__userWaves.getFilterList(2, 1).set(0)
-        elif (_voice == "Voice3Filt3"):
-            self.__userWaves.getFilterList(2, 2).set(0)
-        elif (_voice == "Voice3Filt4"):
-            self.__userWaves.getFilterList(2, 3).set(0)
-        elif (_voice == "Voice3Filt5"):
-            self.__userWaves.getFilterList(2, 4).set(0)
+        if (_voice == UserInput.V1F1.value):
+            self.__userWaves.getFilterList(UserInput.VOICE1.value, UserInput.FILT1.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V1F2.value):
+            self.__userWaves.getFilterList(UserInput.VOICE1.value, UserInput.FILT2.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V1F3.value):
+            self.__userWaves.getFilterList(UserInput.VOICE1.value, UserInput.FILT3.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V1F4.value):
+            self.__userWaves.getFilterList(UserInput.VOICE1.value, UserInput.FILT4.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V1F5.value):
+            self.__userWaves.getFilterList(UserInput.VOICE1.value, UserInput.FILT5.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V2F1.value):
+            self.__userWaves.getFilterList(UserInput.VOICE2.value, UserInput.FILT1.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V2F2.value):
+            self.__userWaves.getFilterList(UserInput.VOICE2.value, UserInput.FILT2.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V2F3.value):
+            self.__userWaves.getFilterList(UserInput.VOICE2.value, UserInput.FILT3.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V2F4.value):
+            self.__userWaves.getFilterList(UserInput.VOICE2.value, UserInput.FILT4.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V2F5.value):
+            self.__userWaves.getFilterList(UserInput.VOICE2.value, UserInput.FILT5.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V3F1.value):
+            self.__userWaves.getFilterList(UserInput.VOICE3.value, UserInput.FILT1.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V3F2.value):
+            self.__userWaves.getFilterList(UserInput.VOICE3.value, UserInput.FILT2.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V3F3.value):
+            self.__userWaves.getFilterList(UserInput.VOICE3.value, UserInput.FILT3.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V3F4.value):
+            self.__userWaves.getFilterList(UserInput.VOICE3.value, UserInput.FILT4.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.V3F5.value):
+            self.__userWaves.getFilterList(UserInput.VOICE3.value, UserInput.FILT5.value).set(UserInput.ZERO.value)
         else:
             pass
 

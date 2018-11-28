@@ -1,14 +1,15 @@
 from pyo import *
+from Util.EnumerateData import UserInput
 import platform
 
 class MidiDevice:
 
     #Assign input channel and place holders for input values
     def __init__(self):
-        self.__device = None
-        self.__midi = None
-        self.__pitch = None
-        self.__amp = None
+        self.__device = UserInput.NONE.value
+        self.__midi = UserInput.NONE.value
+        self.__pitch = UserInput.NONE.value
+        self.__amp = UserInput.NONE.value
         if platform.system() == 'Linux':
             self.__s = Server(duplex = 0)
         else:

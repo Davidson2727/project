@@ -1,14 +1,16 @@
+from Util.EnumerateData import UserInput
+
 class ToggleVoice:
 
     def __init__(self, _userWaves, _voice):
         self.__userWaves = _userWaves
 
-        if (_voice == "Voice1"):
-            self.__userWaves.setIsActive(0)
-        elif (_voice == "Voice2"):
-            self.__userWaves.setIsActive(1)
-        elif (_voice == "Voice3"):
-            self.__userWaves.setIsActive(2)
+        if (_voice == UserInput.VOICE1.value):
+            self.__userWaves.setIsActive(UserInput.VOICE1.value)
+        elif (_voice == UserInput.VOICE2.value):
+            self.__userWaves.setIsActive(UserInput.VOICE2.value)
+        elif (_voice == UserInput.VOICE3.value):
+            self.__userWaves.setIsActive(UserInput.VOICE3.value)
 
     def getUserWaves(self):
         return self.__userWaves

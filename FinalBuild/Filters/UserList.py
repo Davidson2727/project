@@ -1,10 +1,11 @@
 from pyo import *
+from Util.EnumerateData import UserInput
 
 class UserList:
 
     def __init__(self):
-        self.__userList = [None] * 5
-        self.activeFilters = [True] * 5
+        self.__userList = [UserInput.NONE.value] * UserInput.FIVE.value
+        self.activeFilters = [UserInput.TBOOL.value] * UserInput.FIVE.value
 
     def __dir__(self):
         return ['userList']
@@ -25,7 +26,7 @@ class UserList:
 
     #Toggles the isActive state for a selected filter.
     def setIsActive(self, _input):
-        if (self.activeFilters[_input] == True):
-            self.activeFilters[_input] = False
+        if (self.activeFilters[_input] == UserInput.TBOOL.value):
+            self.activeFilters[_input] = UserInput.FBOOL.value
         else:
-            self.activeFilters[_input] = True
+            self.activeFilters[_input] = UserInput.TBOOL.value

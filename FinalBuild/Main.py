@@ -1,14 +1,12 @@
 from pyo import *
 from TerminalPrompts.TerminalGUI import TerminalGUI
 from Controllers.Router import Router
+from Util.EnumerateData import UserInput
 
 #Launches GUI and ends synth processes
 def main():
 
-    classID = "Main"
-    run = True
     TerminalGUI()
-    run = False
-    Router(classID, run)
+    Router(UserInput.EXIT.value, UserInput.FBOOL.value)
 
 main()

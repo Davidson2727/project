@@ -1,6 +1,8 @@
 from TerminalPrompts.Menu1 import Menu1
 from TerminalPrompts.Menu2 import Menu2
 from Controllers.Router import Router
+from Util.EnumerateData import UserInput
+
 class MainMenu:
 
     def __init__(self):
@@ -17,7 +19,7 @@ class MainMenu:
             Menu2()
         #Tells Router the server needs to be rebooted.
         elif (self.__temp == 4):
-            Router(self.__classID, self.__temp)
+            Router(UserInput.REBOOT.value, UserInput.PASS.value)
         else:
             pass
 

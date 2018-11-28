@@ -8,6 +8,7 @@ from Util.ToggleFilter import ToggleFilter
 from Util.NewSynth import NewSynth
 from Util.EmptyVoice import EmptyVoice
 from Util.EmptyFilter import EmptyFilter
+from Util.EnumerateData import UserInput
 from Waves.NewUserWaves import NewUserWaves
 
 
@@ -15,12 +16,12 @@ class SynthObject:
 
     #Generates synObject attributes
     def __init__ (self):
-        self.__pitch = None
-        self.__amp = None
-        self.__waves = [None] * 3
-        self.__filters = [None] * 3
-        self.__output = None
-        self.__newSession = True
+        self.__pitch = UserInput.NONE.value
+        self.__amp = UserInput.NONE.value
+        self.__waves = [UserInput.NONE.value] * UserInput.THREE.value
+        self.__filters = [UserInput.NONE.value] * UserInput.THREE.value
+        self.__output = UserInput.NONE.value
+        self.__newSession = UserInput.TBOOL.value
         self.__midiDevice = MidiDevice()
         self.__userWaves = NewUserWaves()
 
@@ -34,7 +35,6 @@ class SynthObject:
     def editWave(self, _voice, _input):
         newWaves = EditVoice(self.__userWaves, self.__waves, _voice, _input)
         self.__userWaves = newWaves.getUserWaves()
-        # self.__waves = newWaves.getWaves()
         self.out()
 
     #Removes selected voice
@@ -73,20 +73,20 @@ class SynthObject:
 
     #Loads synth environment with default parameters.
     def default(self):
-        self.setInputChannel(99)
-        self.setOutputChannel(99)
+        self.setInputChannel(UserInput.DEFAULT.value)
+        self.setOutputChannel(UserInput.DEFAULT.value)
         self.serverStart()
         defSynth = Default(self.__midiDevice.getPitch(), self.__midiDevice.getAmp(), self.__userWaves)
         self.__userWaves = defSynth.getUserWaves()
         self.__waves = defSynth.getWaves()
         self.__filters = defSynth.getFilters()
         self.__output = ToOutput(self.__userWaves, self.__newSession)
-        self.__newSession = False
+        self.__newSession = UserInput.FBOOL.value
 
     #Allows user to set the midi input device.
     def setInputChannel(self, _input):
 
-        if (self.__newSession == True):
+        if (self.__newSession == UserInput.TBOOL.value):
             self.__midiDevice.setDevice(_input)
             self.__midiDevice.setIn()
         else:
@@ -97,7 +97,7 @@ class SynthObject:
 
     #Allows user to set the midi output device.
     def setOutputChannel(self, _input):
-        if (self.__newSession == True):
+        if (self.__newSession == UserInput.TBOOL.value):
             self.__midiDevice.setDevice(_input)
             self.__midiDevice.setOut()
         else:

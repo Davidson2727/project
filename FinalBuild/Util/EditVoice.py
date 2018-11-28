@@ -1,6 +1,4 @@
-#####
-from Waves.Wave import Wave
-#####
+from Util.EnumerateData import UserInput
 
 class EditVoice:
 
@@ -10,12 +8,12 @@ class EditVoice:
 
 
         #Routes selected waveform to the specified index in NewUserWaves.py.
-        if (_voice == "Voice1"):
-            self.edit(0, _input)
-        elif (_voice == "Voice2"):
-            self.edit(1, _input)
-        elif (_voice == "Voice3"):
-            self.edit(2, _input)
+        if (_voice == UserInput.VOICE1.value):
+            self.edit(UserInput.VOICE1.value, _input)
+        elif (_voice == UserInput.VOICE2.value):
+            self.edit(UserInput.VOICE2.value, _input)
+        elif (_voice == UserInput.VOICE3.value):
+            self.edit(UserInput.VOICE3.value, _input)
 
     def getUserWaves(self):
         return self.__userWaves

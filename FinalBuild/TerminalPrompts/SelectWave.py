@@ -1,4 +1,5 @@
 from Controllers.Router import Router
+from Util.EnumerateData import UserInput
 
 class SelectWave:
 
@@ -13,13 +14,13 @@ class SelectWave:
             pass
         #Tells Router to assign selected waveform.
         elif (self.__temp == 2):
-            Router(self.__classID, self.__temp - 1)
+            Router(self.__classID, UserInput.OSC.value)
         #Tells Router to assign selected waveform.
         elif (self.__temp == 3):
-            Router(self.__classID, self.__temp - 1)
+            Router(self.__classID, UserInput.SIN.value)
         #Tells Router to assign selected waveform.
         elif (self.__temp == 4):
-            Router(self.__classID, self.__temp - 1)
+            Router(self.__classID, UserInput.SAW.value)
         else:
             pass
 

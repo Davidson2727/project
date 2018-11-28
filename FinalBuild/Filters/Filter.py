@@ -1,17 +1,18 @@
 from pyo import *
 from collections import OrderedDict
+from Util.EnumerateData import UserInput
 
 class Filter:
 
     def __init__(self):
         self.__filterList = OrderedDict([(0,None),(0,None),(0,None),(0,None),(0,None),(0,None)])
-        self.__waveform = None
-        self.__name = None
+        self.__waveform = UserInput.NONE.value
+        self.__name = UserInput.NONE.value
 
     #After filters are selected from the default synth environment this function populates
     #self.__filterList with Pyo filter objects
     def setFilterList(self, _wave):
-        if(_wave != None):
+        if(_wave != UserInput.NONE.value):
             self.__filterList = OrderedDict([(0,None),(1,Chorus(_wave)),
             (2,Harmonizer(_wave)),(3,FreqShift(_wave)),(4,WGVerb(_wave)),(5,Disto(_wave))])
         else:

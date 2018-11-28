@@ -1,5 +1,6 @@
 from TerminalPrompts.MainMenu import MainMenu
 from Controllers.Router import Router
+from Util.EnumerateData import UserInput
 
 class TerminalGUI:
 
@@ -14,7 +15,7 @@ class TerminalGUI:
 
             #On start create a SynthObject to manipulated later
             if(self.__newSession == True):
-                Router(self.__classID, self.__newSession)
+                Router(UserInput.GUI.value, UserInput.NEWSESSION.value)
                 self.__newSession = False
             #Present terminal prompts to the user.
             else:

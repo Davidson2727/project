@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from Util.EnumerateData import UserInput
 from pyo import *
 
 #Pyo emulation of Roland JP 8000 supersaw oscillator
@@ -10,8 +11,8 @@ class Wave:
         # self.__waveNames = waveNames = OrderedDict([(0,'exit'),(1,'Oscillator'),(2,'Sine'),(3,'SuperSaw')])
         self.__waveList = OrderedDict([(0,None),(1,Osc(SquareTable(), freq=self.__pitch, mul=self.__amp)),
         (2,Sine(freq=self.__pitch, mul=self.__amp)),(3,SuperSaw(freq=self.__pitch, mul=self.__amp))])
-        self.__waveform = None
-        self.__name = None
+        self.__waveform = UserInput.NONE.value
+        self.__name = UserInput.NONE.value
 
 
     def getName(self):
@@ -32,4 +33,4 @@ class Wave:
 
     #Assigns a sine wave as the default sound.
     def setDefault(self):
-        self.__waveform = self.__waveList[2]
+        self.__waveform = self.__waveList[UserInput.TWO.value]

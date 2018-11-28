@@ -5,59 +5,60 @@ from Controllers.ServerController import ServerController
 from Controllers.VoiceController import VoiceController
 from Controllers.FilterController import FilterController
 from Controllers.NewSynthController import NewSynthController
+from Util.EnumerateData import UserInput
 
 #Router class sends input data from specific loctions throughout
 #the GUI to the appropriate controller.
 class Router:
 
     def __init__(self, _classID, _input):
-        if (_classID == "Main"):
+        if (_classID == UserInput.EXIT.value):
             SynthController(_input)
-        elif (_classID == "TerminalGUI"):
+        elif (_classID == UserInput.GUI.value):
             SynthController(_input)
-        elif (_classID == "MainMenu"):
+        elif (_classID == UserInput.REBOOT.value):
             ServerController()
-        elif (_classID == "Menu2"):
+        elif (_classID == UserInput.REFRESH.value):
             NewSynthController()
-        elif (_classID == "InputChannel"):
+        elif (_classID == UserInput.INPUT.value):
             InController(_input)
-        elif (_classID == "OutputChannel"):
+        elif (_classID == UserInput.OUTPUT.value):
             OutController(_input)
-        elif (_classID == "Voice1"):
+        elif (_classID == UserInput.VOICE1.value):
             VoiceController(_classID, _input)
-        elif (_classID == "Voice2"):
+        elif (_classID == UserInput.VOICE2.value):
             VoiceController(_classID, _input)
-        elif (_classID == "Voice3"):
+        elif (_classID == UserInput.VOICE3.value):
             VoiceController(_classID, _input)
-        elif (_classID == "Voice1Filt1"):
+        elif (_classID == UserInput.V1F1.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice1Filt2"):
+        elif (_classID == UserInput.V1F2.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice1Filt3"):
+        elif (_classID == UserInput.V1F3.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice1Filt4"):
+        elif (_classID == UserInput.V1F4.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice1Filt5"):
+        elif (_classID == UserInput.V1F5.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice2Filt1"):
+        elif (_classID == UserInput.V2F1.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice2Filt2"):
+        elif (_classID == UserInput.V2F2.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice2Filt3"):
+        elif (_classID == UserInput.V2F3.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice2Filt4"):
+        elif (_classID == UserInput.V2F4.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice2Filt5"):
+        elif (_classID == UserInput.V2F5.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice3Filt1"):
+        elif (_classID == UserInput.V3F1.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice3Filt2"):
+        elif (_classID == UserInput.V3F2.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice3Filt3"):
+        elif (_classID == UserInput.V3F3.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice3Filt4"):
+        elif (_classID == UserInput.V3F4.value):
             FilterController(_classID, _input)
-        elif (_classID == "Voice3Filt5"):
+        elif (_classID == UserInput.V3F5.value):
             FilterController(_classID, _input)
         else:
             pass

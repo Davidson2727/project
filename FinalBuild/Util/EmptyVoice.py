@@ -1,15 +1,17 @@
+from Util.EnumerateData import UserInput
+
 class EmptyVoice:
 
     def __init__(self, _userWaves, _voice):
         self.__userWaves = _userWaves
 
         #Sets selected voice to None.
-        if (_voice == "Voice1"):
-            self.__userWaves.readIndex(0).set(0)
-        elif (_voice == "Voice2"):
-            self.__userWaves.readIndex(1).set(0)
-        elif (_voice == "Voice3"):
-            self.__userWaves.readIndex(2).set(0)
+        if (_voice == UserInput.VOICE1.value):
+            self.__userWaves.readIndex(UserInput.VOICE1.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.VOICE2.value):
+            self.__userWaves.readIndex(UserInput.VOICE2.value).set(UserInput.ZERO.value)
+        elif (_voice == UserInput.VOICE3.value):
+            self.__userWaves.readIndex(UserInput.VOICE3.value).set(UserInput.ZERO.value)
 
     def getUserWaves(self):
         return self.__userWaves

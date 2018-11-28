@@ -1,10 +1,11 @@
 from pyo import *
+from Util.EnumerateData import UserInput
 from Filters.UserList import UserList
 
 class NewUserWaves:
 
     def __init__(self):
-        self.__userWave = [None] * 3
+        self.__userWave = [UserInput.NONE.value] * UserInput.THREE.value
         self.__filterList = []
         self.__filterList.append(UserList())
         self.__filterList.append(UserList())
@@ -56,7 +57,7 @@ class NewUserWaves:
 
     #Toggles the isActive state of the Wave objects in self.__uswerWaves.
     def setIsActive(self, _input):
-        if (self.activeWaves[_input] == True):
-            self.activeWaves[_input] = False
+        if (self.activeWaves[_input] == UserInput.TBOOL.value):
+            self.activeWaves[_input] = UserInput.FBOOL.value
         else:
-            self.activeWaves[_input] = True
+            self.activeWaves[_input] = UserInput.TBOOL.value

@@ -1,5 +1,6 @@
 from TerminalPrompts.SelectVoice import SelectVoice
 from Controllers.Router import Router
+from Util.EnumerateData import UserInput
 
 class Menu2:
 
@@ -16,7 +17,7 @@ class Menu2:
             SelectVoice()
         #Tells Router a new synth environment needs to be loaded.
         elif (self.__temp == 3):
-            Router(self.__classID, self.__temp)
+            Router(UserInput.REFRESH.value, UserInput.PASS.value)
         elif (self.__temp == 4):
             pass
         elif (self.__temp == 5):

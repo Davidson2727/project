@@ -1,38 +1,40 @@
+from Util.EnumerateData import UserInput
+
 class ToggleFilter:
 
     def __init__(self, _userWaves, _classID, _input):
         self.__userWaves = _userWaves
 
-        if (_classID == "Voice1Filt1"):
-            self.toggle(0,0)
-        elif (_classID == "Voice1Filt2"):
-            self.toggle(0,1)
-        elif (_classID == "Voice1Filt3"):
-            self.toggle(0,2)
-        elif (_classID == "Voice1Filt4"):
-            self.toggle(0,3)
-        elif (_classID == "Voice1Filt5"):
-            self.toggle(0,4)
-        elif (_classID == "Voice2Filt1"):
-            self.toggle(1,0)
-        elif (_classID == "Voice2Filt2"):
-            self.toggle(1,1)
-        elif (_classID == "Voice2Filt3"):
-            self.toggle(1,2)
-        elif (_classID == "Voice2Filt4"):
-            self.toggle(1,3)
-        elif (_classID == "Voice2Filt5"):
-            self.toggle(1,4)
-        elif (_classID == "Voice3Filt1"):
-            self.toggle(2,0)
-        elif (_classID == "Voice3Filt2"):
-            self.toggle(2,1)
-        elif (_classID == "Voice3Filt3"):
-            self.toggle(2,2)
-        elif (_classID == "Voice3Filt4"):
-            self.toggle(2,3)
-        elif (_classID == "Voice3Filt5"):
-            self.toggle(2,4)
+        if (_classID == UserInput.V1F1.value):
+            self.toggle(UserInput.VOICE1.value, UserInput.FILT1.value)
+        elif (_classID == UserInput.V1F2.value):
+            self.toggle(UserInput.VOICE1.value, UserInput.FILT2.value)
+        elif (_classID == UserInput.V1F3.value):
+            self.toggle(UserInput.VOICE1.value, UserInput.FILT3.value)
+        elif (_classID == UserInput.V1F4.value):
+            self.toggle(UserInput.VOICE1.value, UserInput.FILT4.value)
+        elif (_classID == UserInput.V1F5.value):
+            self.toggle(UserInput.VOICE1.value, UserInput.FILT5.value)
+        elif (_classID == UserInput.V2F1.value):
+            self.toggle(UserInput.VOICE2.value, UserInput.FILT1.value)
+        elif (_classID == UserInput.V2F2.value):
+            self.toggle(UserInput.VOICE2.value, UserInput.FILT2.value)
+        elif (_classID == UserInput.V2F3.value):
+            self.toggle(UserInput.VOICE2.value, UserInput.FILT3.value)
+        elif (_classID == UserInput.V2F4.value):
+            self.toggle(UserInput.VOICE2.value, UserInput.FILT4.value)
+        elif (_classID == UserInput.V2F5.value):
+            self.toggle(UserInput.VOICE2.value, UserInput.FILT5.value)
+        elif (_classID == UserInput.V3F1.value):
+            self.toggle(UserInput.VOICE3.value, UserInput.FILT1.value)
+        elif (_classID == UserInput.V3F2.value):
+            self.toggle(UserInput.VOICE3.value, UserInput.FILT2.value)
+        elif (_classID == UserInput.V3F3.value):
+            self.toggle(UserInput.VOICE3.value, UserInput.FILT3.value)
+        elif (_classID == UserInput.V3F4.value):
+            self.toggle(UserInput.VOICE3.value, UserInput.FILT4.value)
+        elif (_classID == UserInput.V3F5.value):
+            self.toggle(UserInput.VOICE3.value, UserInput.FILT5.value)
         else:
             pass
 
@@ -40,7 +42,7 @@ class ToggleFilter:
         return self.__userWaves
 
     def toggle(self, _voice, _filter):
-        if(self.__userWaves.readIndex(_voice).get() != None):
+        if(self.__userWaves.readIndex(_voice).get() != UserInput.NONE.value):
             self.__userWaves.setIsActiveFilter(_voice, _filter)
         else:
             pass

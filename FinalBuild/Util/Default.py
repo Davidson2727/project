@@ -1,6 +1,7 @@
 from pyo import *
 from Waves.Wave import Wave
 from Filters.Filter import Filter
+from Util.EnumerateData import UserInput
 
 class Default:
 
@@ -8,10 +9,10 @@ class Default:
         self.__pitch = _pitch
         self.__amp = _amp
         self.__userWaves = _userWaves
-        self.__waves = [None] * 3
-        self.__filters1 = [None] * 5
-        self.__filters2 = [None] * 5
-        self.__filters3 = [None] * 5
+        self.__waves = [UserInput.NONE.value] * UserInput.THREE.value
+        self.__filters1 = [UserInput.NONE.value] * UserInput.FIVE.value
+        self.__filters2 = [UserInput.NONE.value] * UserInput.FIVE.value
+        self.__filters3 = [UserInput.NONE.value] * UserInput.FIVE.value
         self.__filters = [self.__filters1, self.__filters2, self.__filters3]
 
         #sets self.__waves indices to Active Wave objects.
@@ -23,7 +24,7 @@ class Default:
                 newFilter = Filter()
                 self.__filters[i][j] = newFilter
         #Sets the first voice to a default sine wave with no filters.
-        self.__waves[0].setDefault()
+        self.__waves[UserInput.ZERO.value].setDefault()
         #Sets all voices and corresponding mutable filter slots to active Wave and Filter Object
         for i in range(self.__userWaves.getLength()):
             self.__userWaves.setWave(i, self.__waves[i])
