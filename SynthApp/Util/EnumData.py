@@ -3,13 +3,17 @@ from enum import IntEnum
 
 class Bools(Enum):
     NONE = None
+    TBOOL = True
+    FBOOL = False
 
 class Nums(IntEnum):
     START = 100
     STOP = 99
     DEFAULT = 99
     PASS = 999
-    BOOT = 9999
+    TOGGLE = 90
+    BOOT = 70
+    REBOOT = 80
     VOICE1 = 0
     VOICE2 = 1
     VOICE3 = 2
@@ -37,3 +41,6 @@ class Nums(IntEnum):
     FREQ = 3
     RVRB = 4
     DIST = 5
+    MUTEV1 = 20
+    MUTEV2 = 21
+    MUTEV3 = 22

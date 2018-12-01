@@ -4,7 +4,7 @@ from Util.MidiDevice import MidiDevice
 
 class SynthObject:
     def __init__(self):
-        self._midiDevice = MidiDevice()
+        self._midiDevice = Bools.NONE.value
         self._wave1 = Nums.NONE.value
         self._wave2 = Nums.NONE.value
         self._wave3 = Nums.NONE.value
@@ -42,10 +42,17 @@ class SynthObject:
         self._v3Filt4 = Nums.NONE.value
         self._v3Filt5 = Nums.NONE.value
 
-    def buildSynth(self):
+    def onStartBuildSynth(self):
+        self._midiDevice = MidiDevice()
+        self.setIOStartServer()
+        self.buildSynth()
+
+    def setIOStartServer(self):
         self.setInputChannel(Nums.DEFAULT.value)
         self.setOutputChannel(Nums.DEFAULT.value)
         self.serverStart()
+
+    def buildSynth(self):
         self.assignWave1()
         self.assignWave2()
         self.assignWave3()
@@ -899,6 +906,28 @@ class SynthObject:
         if(self._wave3Filt5 != Nums.NONE.value):
             self._wave3Filt5.out()
 
+    def toggleV1(self, _input):
+        if(self._wave1 != Nums.NONE.value):
+            if(_input == True):
+                self._wave1.stop()
+            else:
+                self._wave1.out()
+
+    def toggleV2(self, _input):
+        if(self._wave2 != Nums.NONE.value):
+            if(_input == True):
+                self._wave2.stop()
+            else:
+                self._wave2.out()
+
+    def toggleV3(self, _input):
+        if(self._wave3 != Nums.NONE.value):
+            if(_input == True):
+                self._wave3.stop()
+            else:
+                self._wave3.out()
+
+
     #Sets the midi input channel.
     def setInputChannel(self, _input):
             self._midiDevice.setDevice(_input)
@@ -914,6 +943,9 @@ class SynthObject:
         self._midiDevice.bootServer()
         self._midiDevice.startServer()
         self._midiDevice.midiToFreq()
+
+    def boot(self):
+        self._midiDevice.bootServer()
 
     #Stops the audio server.
     def kill(self):

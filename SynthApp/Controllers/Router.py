@@ -6,6 +6,7 @@ from Controllers.V1FiltController import V1FiltController
 from Controllers.V2FiltController import V2FiltController
 from Controllers.V3FiltController import V3FiltController
 from Controllers.SynthController import SynthController
+from Controllers.ToggleVoiceController import ToggleVoiceController
 
 
 
@@ -52,3 +53,9 @@ class Router:
             V3FiltController(_from, _input)
         elif(_from == Nums.BOOT.value):
             SynthController()
+        elif(_from == Nums.MUTEV1.value):
+            ToggleVoiceController(_from, _input)
+        elif(_from == Nums.MUTEV2.value):
+            ToggleVoiceController(_from, _input)
+        elif(_from == Nums.MUTEV3.value):
+            ToggleVoiceController(_from, _input)

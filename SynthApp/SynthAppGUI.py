@@ -326,7 +326,7 @@ class MyFrame(wx.Frame):
             Router(Nums.VOICE1.value, Nums.NONE.value)
 
     def muteVoice1(self, event):
-        Router(Nums.VOICE1.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEV1.value, self.muteBtn1.GetValue())
 
     def editV1F1(self, event):
         if (self.combo_box_4.GetValue() == "Chorus"):
@@ -425,7 +425,7 @@ class MyFrame(wx.Frame):
             Router(Nums.VOICE2.value, Nums.NONE.value)
 
     def muteVoice2(self, event):
-        Router(Nums.VOICE2.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEV2.value, self.muteBtn2.GetValue())
 
     def editV2F1(self, event):
         if (self.combo_box_5.GetValue() == "Chorus"):
@@ -524,7 +524,7 @@ class MyFrame(wx.Frame):
             Router(Nums.VOICE3.value, Nums.NONE.value)
 
     def muteVoice3(self, event):
-        Router(Nums.VOICE3.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEV3.value, self.muteBtn3.GetValue())
 
     def editV3F1(self, event):
         if (self.combo_box_6.GetValue() == "Chorus"):

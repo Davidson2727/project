@@ -11,10 +11,10 @@ class MidiDevice:
         self.__pitch = Bools.NONE.value
         self.__amp = Bools.NONE.value
         if platform.system() == 'Linux':
-            self.__s = Server(duplex = 0)
+            self._s = Server(duplex = 0)
         else:
-            self.__s = Server()
-        # self.__s.boot()
+            self._s = Server()
+        # self._s.boot()
 
     def getDevice(self):
         return self.__device
@@ -26,38 +26,41 @@ class MidiDevice:
         return self.__amp
 
     def getServer(self):
-        return self.__s
+        return self._s
 
     def setDevice(self, _input):
         self.__device = _input
 
     #Run output with WXPython GUI
     def toGui(self):
-        self.__s.gui(locals())
+        self._s.gui(locals())
 
     def setIn(self):
-        self.__s.setMidiInputDevice(self.__device)
+        self._s.setMidiInputDevice(self.__device)
 
     def setOut(self):
         if platform.system() == 'Linux':
-            self.__s.setOutputDevice(self.__device)
-            self.__s.setMidiOutputDevice(self.__device)
+            self._s.setOutputDevice(self.__device)
+            self._s.setMidiOutputDevice(self.__device)
         else:
             pass
 
     #Set midi channel value for server, load and start Server
     def bootServer(self):
-        self.__s.boot()
+        self._s.boot()
         # pass
 
     def startServer(self):
-        self.__s.start()
+        self._s.start()
 
     def stopServer(self):
-        self.__s.stop()
+        self._s.stop()
 
     def shutdownServer(self):
-        self.__s.shutdown()
+        self._s.shutdown()
+
+    def setVol(self):
+        self._s.setAmp(20)
 
     #Prep Pyo to accept midi input, convert input to freq and amplitude
     def midiToFreq(self):
