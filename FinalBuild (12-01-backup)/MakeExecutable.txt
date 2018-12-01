@@ -12,7 +12,7 @@ save it as 'someName'.desktop
 navigate to Desktop in terminal
 run chmod +x on the new .desktop file
 
-add the following lines
+add the following lines 
 
 
 [Desktop Entry]
@@ -22,4 +22,6 @@ Exec = /home/jak/Desktop/340_project/FinalBuild/FinalBuild/Main.py
 Icon = /home/jak/Desktop/340_project/FinalBuild/FinalBuild/Icon.jpeg
 Type = Application
 
-save the file, it should lau   nch now.
+save the file, it should launch now.
+
+
