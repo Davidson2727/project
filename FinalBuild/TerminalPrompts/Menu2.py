@@ -1,4 +1,6 @@
 from TerminalPrompts.SelectVoice import SelectVoice
+from TerminalPrompts.savePrompt import savePrompt
+from TerminalPrompts.loadPrompt import loadPrompt
 from Controllers.Router import Router
 
 class Menu2:
@@ -18,9 +20,10 @@ class Menu2:
         elif (self.__temp == 3):
             Router(self.__classID, self.__temp)
         elif (self.__temp == 4):
+            loadPrompt()
             pass
         elif (self.__temp == 5):
-            Router('TerminalGUI',self.__temp)
+            savePrompt()
         else:
             pass
 

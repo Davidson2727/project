@@ -5,6 +5,7 @@ from Controllers.ServerController import ServerController
 from Controllers.VoiceController import VoiceController
 from Controllers.FilterController import FilterController
 from Controllers.NewSynthController import NewSynthController
+from Controllers.userController import userController
 
 #Router class sends input data from specific loctions throughout
 #the GUI to the appropriate controller.
@@ -59,5 +60,11 @@ class Router:
             FilterController(_classID, _input)
         elif (_classID == "Voice3Filt5"):
             FilterController(_classID, _input)
+        elif (_classID == 'savePrompt'):
+            SynthController(_input)
+        elif (_classID == "loginMenu" ):
+            userController(_input)
+        elif (_classID == "signUpMenu" ):
+            userController(_input)
         else:
             pass

@@ -50,5 +50,6 @@ class EditFilter:
             self.__filters[_i][_j].setFilterList(waveform)
             self.__filters[_i][_j].set(_input)
             self.__userWaves.setFilter(_i, _j, self.__filters[_i][_j])
+            Config.synthObject._saveFilters[j+(5*1)] = _input
         else:
             pass

@@ -8,7 +8,9 @@ class SynthController:
 
         if (_input == True):
             Config.synthObject.default()
-        elif(_input == 5):
-            Config.synthObject.save()
+        elif (_input == 2 or _input == 3):
+            Config.synthObject.save(_input)
+        elif(_input == 4):
+            Config.synthObject.loadSynth()
         else:
             Config.synthObject.kill()

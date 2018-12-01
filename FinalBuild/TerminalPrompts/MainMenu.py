@@ -1,12 +1,13 @@
 from TerminalPrompts.Menu1 import Menu1
 from TerminalPrompts.Menu2 import Menu2
+from TerminalPrompts.userMenu import userMenu
 from Controllers.Router import Router
 class MainMenu:
 
     def __init__(self):
         self.__temp = None
         self.__classID = "MainMenu"
-        print("1: Exit\n2: Set I/O Device\n3: Edit Synth\n4: Reboot Audio Server")
+        print("1: Exit\n2: Set I/O Device\n3: Edit Synth\n4: Reboot Audio Server\n5: User")
         temp = input("Make a selection: ")
         self.__temp = int(temp)
         if (self.__temp == 1):
@@ -18,6 +19,8 @@ class MainMenu:
         #Tells Router the server needs to be rebooted.
         elif (self.__temp == 4):
             Router(self.__classID, self.__temp)
+        elif (self.__temp == 5):
+            userMenu()
         else:
             pass
 

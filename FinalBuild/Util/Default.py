@@ -13,6 +13,8 @@ class Default:
         self.__filters2 = [None] * 5
         self.__filters3 = [None] * 5
         self.__filters = [self.__filters1, self.__filters2, self.__filters3]
+        self._saveWaves = [None]*3
+        self._saveFilters = [None]*15
 
         #sets self.__waves indices to Active Wave objects.
         for i in range(self.__userWaves.getLength()):
