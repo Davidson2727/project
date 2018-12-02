@@ -29,6 +29,18 @@ class sqlTranslator:
         query = beginInsert+table+midPoint+values
         sqlTranslator.execute(query)
 
+    def select(object,userName,passWord):
+        query = 'SELECT '
+        columns = ''
+        table = ''
+        conditions = ''
+        where = 'WHERE'
+        anded = 'AND'
+        ored = 'OR'
+
+        query = query+columns+table+conditions
+        print(query)
+
     def execute(query):
         server = "35.224.154.47"
         userN = "basicUser"

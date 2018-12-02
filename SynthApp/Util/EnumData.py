@@ -1,15 +1,27 @@
 from enum import Enum
 from enum import IntEnum
+#Last updated: 01DEC2018
+#This file contains non-integer type and integer type enumerated constants.
+#Contributing Authors: Avery Anderson
 
+#Contains non-integer type enumerated constants.
 class Bools(Enum):
     NONE = None
+    TBOOL = True
+    FBOOL = False
 
+#Contains integer type enumerated constants.
 class Nums(IntEnum):
     START = 100
     STOP = 99
     DEFAULT = 99
     PASS = 999
-    BOOT = 9999
+    REFRESH = 60
+    BOOT = 70
+    REBOOT = 80
+    TOGGLE = 90
+    THREE = 3
+    FIVE = 5
     VOICE1 = 0
     VOICE2 = 1
     VOICE3 = 2
@@ -17,24 +29,16 @@ class Nums(IntEnum):
     SIN = 1
     OSC = 2
     SAW = 3
-    V1F1 = 101
-    V1F2 = 102
-    V1F3 = 103
-    V1F4 = 104
-    V1F5 = 105
-    V2F1 = 201
-    V2F2 = 202
-    V2F3 = 203
-    V2F4 = 204
-    V2F5 = 205
-    V3F1 = 301
-    V3F2 = 302
-    V3F3 = 303
-    V3F4 = 304
-    V3F5 = 305
+    FILT1 = 0
+    FILT2 = 1
+    FILT3 = 2
+    FILT4 = 3
+    FILT5 = 4
     CHOR = 1
     HARM = 2
     FREQ = 3
     RVRB = 4
     DIST = 5
-    VOICE = 5
+    MUTEVOICE = 20
+    MUTEFILTER = 30
+    SAVE = 50

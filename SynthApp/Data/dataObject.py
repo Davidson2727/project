@@ -8,3 +8,9 @@ class dataObject:
         pass
     def create(self,schemaType):
         return sqlTranslator.insert(self,schemaType)
+    def read(self):
+        return sqlTranslator.select(self)
+    def update(self):
+        return sqlTranslator.update(self)
+    def delete(self):
+        return sqlTranslator.update(self)
