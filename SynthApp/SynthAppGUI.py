@@ -21,9 +21,10 @@ class MyFrame(wx.Frame):
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.SetSize((901, 753))
+        # self.SetBackgroundColour(wx.BLACK)
 
         #Start the synth.
-        Router(Nums.START.value, Nums.PASS.value)
+        Router(Nums.START.value, Nums.PASS.value, Nums.PASS.value, Nums.PASS.value)
 
         #Sets up Voice1 options.
         self.combo_box_1 = wx.ComboBox(self, wx.ID_ANY, choices=["None", "Sine", "Square", "Saw"], style=wx.CB_READONLY)
@@ -308,308 +309,429 @@ class MyFrame(wx.Frame):
         self.muteBtn16.SetValue(False)
         self.muteBtn17.SetValue(False)
         self.muteBtn18.SetValue(False)
-        Router(Nums.REFRESH.value, Nums.PASS.value)
+        Router(Nums.REFRESH.value, Nums.PASS.value, Nums.PASS.value, Nums.PASS.value)
 
     def bootAudioServer(self, event):  # wxGlade: MyFrame.<event_handler>
-        Router(Nums.BOOT.value, Nums.PASS.value)
+        self.muteBtn1.SetValue(False)
+        self.muteBtn2.SetValue(False)
+        self.muteBtn3.SetValue(False)
+        self.muteBtn4.SetValue(False)
+        self.muteBtn5.SetValue(False)
+        self.muteBtn6.SetValue(False)
+        self.muteBtn7.SetValue(False)
+        self.muteBtn8.SetValue(False)
+        self.muteBtn9.SetValue(False)
+        self.muteBtn10.SetValue(False)
+        self.muteBtn11.SetValue(False)
+        self.muteBtn12.SetValue(False)
+        self.muteBtn13.SetValue(False)
+        self.muteBtn14.SetValue(False)
+        self.muteBtn15.SetValue(False)
+        self.muteBtn16.SetValue(False)
+        self.muteBtn17.SetValue(False)
+        self.muteBtn18.SetValue(False)
+        Router(Nums.BOOT.value, Nums.PASS.value, Nums.PASS.value, Nums.PASS.value)
+
 
     #VOICE1 and FILTERS
     #"Chorus", "Harmonizer", "Frequency Shift", "Reverb", "Distortion", "None"
     def editVoice1(self, event):
         if (self.combo_box_1.GetValue() == "Square"):
-            Router(Nums.VOICE1.value, Nums.OSC.value)
+            Router(Nums.VOICE1.value, Nums.PASS.value, Nums.PASS.value, Nums.OSC.value)
+            self.muteBtn1.SetValue(False)
         elif (self.combo_box_1.GetValue() == "Sine"):
-            Router(Nums.VOICE1.value, Nums.SIN.value)
+            Router(Nums.VOICE1.value, Nums.PASS.value, Nums.PASS.value, Nums.SIN.value)
+            self.muteBtn1.SetValue(False)
         elif (self.combo_box_1.GetValue() == "Saw"):
-            Router(Nums.VOICE1.value, Nums.SAW.value)
+            Router(Nums.VOICE1.value, Nums.PASS.value, Nums.PASS.value, Nums.SAW.value)
+            self.muteBtn1.SetValue(False)
         elif (self.combo_box_1.GetValue() == "None"):
-            Router(Nums.VOICE1.value, Nums.NONE.value)
+            Router(Nums.VOICE1.value, Nums.PASS.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn1.SetValue(False)
 
     def muteVoice1(self, event):
-        Router(Nums.MUTEV1.value, self.muteBtn1.GetValue())
+        Router(Nums.MUTEVOICE.value, Nums.PASS.value, Nums.VOICE1.value, self.muteBtn1.GetValue())
 
     def editV1F1(self, event):
         if (self.combo_box_4.GetValue() == "Chorus"):
-            Router(Nums.V1F1.value, Nums.CHOR.value)
+            Router(Nums.VOICE1.value, Nums.FILT1.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn4.SetValue(False)
         elif (self.combo_box_4.GetValue() == "Harmonizer"):
-            Router(Nums.V1F1.value, Nums.HARM.value)
+            Router(Nums.VOICE1.value, Nums.FILT1.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn4.SetValue(False)
         elif (self.combo_box_4.GetValue() == "Frequency Shift"):
-            Router(Nums.V1F1.value, Nums.FREQ.value)
+            Router(Nums.VOICE1.value, Nums.FILT1.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn4.SetValue(False)
         elif (self.combo_box_4.GetValue() == "Reverb"):
-            Router(Nums.V1F1.value, Nums.RVRB.value)
+            Router(Nums.VOICE1.value, Nums.FILT1.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn4.SetValue(False)
         elif (self.combo_box_4.GetValue() == "Distortion"):
-            Router(Nums.V1F1.value, Nums.DIST.value)
+            Router(Nums.VOICE1.value, Nums.FILT1.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn4.SetValue(False)
         elif (self.combo_box_4.GetValue() == "None"):
-            Router(Nums.V1F1.value, Nums.NONE.value)
+            Router(Nums.VOICE1.value, Nums.FILT1.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn4.SetValue(False)
 
     def muteV1F1(self, event):
-        Router(Nums.V1F1.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT1.value, Nums.VOICE1.value, self.muteBtn4.GetValue())
 
     def editV1F2(self, event):
         if (self.combo_box_7.GetValue() == "Chorus"):
-            Router(Nums.V1F2.value, Nums.CHOR.value)
+            Router(Nums.VOICE1.value, Nums.FILT2.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn7.SetValue(False)
         elif (self.combo_box_7.GetValue() == "Harmonizer"):
-            Router(Nums.V1F2.value, Nums.HARM.value)
+            Router(Nums.VOICE1.value, Nums.FILT2.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn7.SetValue(False)
         elif (self.combo_box_7.GetValue() == "Frequency Shift"):
-            Router(Nums.V1F2.value, Nums.FREQ.value)
+            Router(Nums.VOICE1.value, Nums.FILT2.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn7.SetValue(False)
         elif (self.combo_box_7.GetValue() == "Reverb"):
-            Router(Nums.V1F2.value, Nums.RVRB.value)
+            Router(Nums.VOICE1.value, Nums.FILT2.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn7.SetValue(False)
         elif (self.combo_box_7.GetValue() == "Distortion"):
-            Router(Nums.V1F2.value, Nums.DIST.value)
+            Router(Nums.VOICE1.value, Nums.FILT2.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn7.SetValue(False)
         elif (self.combo_box_7.GetValue() == "None"):
-            Router(Nums.V1F2.value, Nums.NONE.value)
+            Router(Nums.VOICE1.value, Nums.FILT2.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn7.SetValue(False)
 
     def muteV1F2(self, event):
-        Router(Nums.V1F2.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT2.value, Nums.VOICE1.value, self.muteBtn7.GetValue())
 
     def editV1F3(self, event):
         if (self.combo_box_10.GetValue() == "Chorus"):
-            Router(Nums.V1F3.value, Nums.CHOR.value)
+            Router(Nums.VOICE1.value, Nums.FILT3.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn10.SetValue(False)
         elif (self.combo_box_10.GetValue() == "Harmonizer"):
-            Router(Nums.V1F3.value, Nums.HARM.value)
+            Router(Nums.VOICE1.value, Nums.FILT3.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn10.SetValue(False)
         elif (self.combo_box_10.GetValue() == "Frequency Shift"):
-            Router(Nums.V1F3.value, Nums.FREQ.value)
+            Router(Nums.VOICE1.value, Nums.FILT3.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn10.SetValue(False)
         elif (self.combo_box_10.GetValue() == "Reverb"):
-            Router(Nums.V1F3.value, Nums.RVRB.value)
+            Router(Nums.VOICE1.value, Nums.FILT3.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn10.SetValue(False)
         elif (self.combo_box_10.GetValue() == "Distortion"):
-            Router(Nums.V1F3.value, Nums.DIST.value)
+            Router(Nums.VOICE1.value, Nums.FILT3.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn10.SetValue(False)
         elif (self.combo_box_10.GetValue() == "None"):
-            Router(Nums.V1F3.value, Nums.NONE.value)
+            Router(Nums.VOICE1.value, Nums.FILT3.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn10.SetValue(False)
 
     def muteV1F3(self, event):
-        Router(Nums.V1F3.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT3.value, Nums.VOICE1.value, self.muteBtn10.GetValue())
 
     def editV1F4(self, event):
         if (self.combo_box_13.GetValue() == "Chorus"):
-            Router(Nums.V1F4.value, Nums.CHOR.value)
+            Router(Nums.VOICE1.value, Nums.FILT4.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn13.SetValue(False)
         elif (self.combo_box_13.GetValue() == "Harmonizer"):
-            Router(Nums.V1F4.value, Nums.HARM.value)
+            Router(Nums.VOICE1.value, Nums.FILT4.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn13.SetValue(False)
         elif (self.combo_box_13.GetValue() == "Frequency Shift"):
-            Router(Nums.V1F4.value, Nums.FREQ.value)
+            Router(Nums.VOICE1.value, Nums.FILT4.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn13.SetValue(False)
         elif (self.combo_box_13.GetValue() == "Reverb"):
-            Router(Nums.V1F4.value, Nums.RVRB.value)
+            Router(Nums.VOICE1.value, Nums.FILT4.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn13.SetValue(False)
         elif (self.combo_box_13.GetValue() == "Distortion"):
-            Router(Nums.V1F4.value, Nums.DIST.value)
+            Router(Nums.VOICE1.value, Nums.FILT4.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn13.SetValue(False)
         elif (self.combo_box_13.GetValue() == "None"):
-            Router(Nums.V1F4.value, Nums.NONE.value)
+            Router(Nums.VOICE1.value, Nums.FILT4.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn13.SetValue(False)
 
     def muteV1F4(self, event):
-        Router(Nums.V1F4.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT4.value, Nums.VOICE1.value, self.muteBtn13.GetValue())
 
     def editV1F5(self, event):
         if (self.combo_box_16.GetValue() == "Chorus"):
-            Router(Nums.V1F5.value, Nums.CHOR.value)
+            Router(Nums.VOICE1.value, Nums.FILT5.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn16.SetValue(False)
         elif (self.combo_box_16.GetValue() == "Harmonizer"):
-            Router(Nums.V1F5.value, Nums.HARM.value)
+            Router(Nums.VOICE1.value, Nums.FILT5.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn16.SetValue(False)
         elif (self.combo_box_16.GetValue() == "Frequency Shift"):
-            Router(Nums.V1F5.value, Nums.FREQ.value)
+            Router(Nums.VOICE1.value, Nums.FILT5.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn16.SetValue(False)
         elif (self.combo_box_16.GetValue() == "Reverb"):
-            Router(Nums.V1F5.value, Nums.RVRB.value)
+            Router(Nums.VOICE1.value, Nums.FILT5.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn16.SetValue(False)
         elif (self.combo_box_16.GetValue() == "Distortion"):
-            Router(Nums.V1F5.value, Nums.DIST.value)
+            Router(Nums.VOICE1.value, Nums.FILT5.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn16.SetValue(False)
         elif (self.combo_box_16.GetValue() == "None"):
-            Router(Nums.V1F5.value, Nums.NONE.value)
+            Router(Nums.VOICE1.value, Nums.FILT5.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn16.SetValue(False)
 
     def muteV1F5(self, event):
-        Router(Nums.V1F5.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT5.value, Nums.VOICE1.value, self.muteBtn16.GetValue())
 
     #VOICE2 and FILTERS
     def editVoice2(self, event):
         if (self.combo_box_2.GetValue() == "Square"):
-            Router(Nums.VOICE2.value, Nums.OSC.value)
+            Router(Nums.VOICE2.value, Nums.PASS.value, Nums.PASS.value, Nums.OSC.value)
+            self.muteBtn2.SetValue(False)
         elif (self.combo_box_2.GetValue() == "Sine"):
-            Router(Nums.VOICE2.value, Nums.SIN.value)
+            Router(Nums.VOICE2.value, Nums.PASS.value, Nums.PASS.value, Nums.SIN.value)
+            self.muteBtn2.SetValue(False)
         elif (self.combo_box_2.GetValue() == "Saw"):
-            Router(Nums.VOICE2.value, Nums.SAW.value)
+            Router(Nums.VOICE2.value, Nums.PASS.value, Nums.PASS.value, Nums.SAW.value)
+            self.muteBtn2.SetValue(False)
         elif (self.combo_box_2.GetValue() == "None"):
-            Router(Nums.VOICE2.value, Nums.NONE.value)
+            Router(Nums.VOICE2.value, Nums.PASS.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn2.SetValue(False)
 
     def muteVoice2(self, event):
-        Router(Nums.MUTEV2.value, self.muteBtn2.GetValue())
+        Router(Nums.MUTEVOICE.value, Nums.PASS.value, Nums.VOICE2.value, self.muteBtn2.GetValue())
 
     def editV2F1(self, event):
         if (self.combo_box_5.GetValue() == "Chorus"):
-            Router(Nums.V2F1.value, Nums.CHOR.value)
+            Router(Nums.VOICE2.value, Nums.FILT1.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn5.SetValue(False)
         elif (self.combo_box_5.GetValue() == "Harmonizer"):
-            Router(Nums.V2F1.value, Nums.HARM.value)
+            Router(Nums.VOICE2.value, Nums.FILT1.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn5.SetValue(False)
         elif (self.combo_box_5.GetValue() == "Frequency Shift"):
-            Router(Nums.V2F1.value, Nums.FREQ.value)
+            Router(Nums.VOICE2.value, Nums.FILT1.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn5.SetValue(False)
         elif (self.combo_box_5.GetValue() == "Reverb"):
-            Router(Nums.V2F1.value, Nums.RVRB.value)
+            Router(Nums.VOICE2.value, Nums.FILT1.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn5.SetValue(False)
         elif (self.combo_box_5.GetValue() == "Distortion"):
-            Router(Nums.V2F1.value, Nums.DIST.value)
+            Router(Nums.VOICE2.value, Nums.FILT1.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn5.SetValue(False)
         elif (self.combo_box_5.GetValue() == "None"):
-            Router(Nums.V2F1.value, Nums.NONE.value)
+            Router(Nums.VOICE2.value, Nums.FILT1.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn5.SetValue(False)
 
     def muteV2F1(self, event):
-        Router(Nums.V2F1.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT1.value, Nums.VOICE2.value, self.muteBtn5.GetValue())
 
     def editV2F2(self, event):
         if (self.combo_box_8.GetValue() == "Chorus"):
-            Router(Nums.V2F2.value, Nums.CHOR.value)
+            Router(Nums.VOICE2.value, Nums.FILT2.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn8.SetValue(False)
         elif (self.combo_box_8.GetValue() == "Harmonizer"):
-            Router(Nums.V2F2.value, Nums.HARM.value)
+            Router(Nums.VOICE2.value, Nums.FILT2.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn8.SetValue(False)
         elif (self.combo_box_8.GetValue() == "Frequency Shift"):
-            Router(Nums.V2F2.value, Nums.FREQ.value)
+            Router(Nums.VOICE2.value, Nums.FILT2.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn8.SetValue(False)
         elif (self.combo_box_8.GetValue() == "Reverb"):
-            Router(Nums.V2F2.value, Nums.RVRB.value)
+            Router(Nums.VOICE2.value, Nums.FILT2.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn8.SetValue(False)
         elif (self.combo_box_8.GetValue() == "Distortion"):
-            Router(Nums.V2F2.value, Nums.DIST.value)
+            Router(Nums.VOICE2.value, Nums.FILT2.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn8.SetValue(False)
         elif (self.combo_box_8.GetValue() == "None"):
-            Router(Nums.V2F2.value, Nums.NONE.value)
+            Router(Nums.VOICE2.value, Nums.FILT2.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn8.SetValue(False)
 
     def muteV2F2(self, event):
-        Router(Nums.V2F2.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT2.value, Nums.VOICE2.value, self.muteBtn8.GetValue())
 
     def editV2F3(self, event):
         if (self.combo_box_11.GetValue() == "Chorus"):
-            Router(Nums.V2F3.value, Nums.CHOR.value)
+            Router(Nums.VOICE2.value, Nums.FILT3.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn11.SetValue(False)
         elif (self.combo_box_11.GetValue() == "Harmonizer"):
-            Router(Nums.V2F3.value, Nums.HARM.value)
+            Router(Nums.VOICE2.value, Nums.FILT3.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn11.SetValue(False)
         elif (self.combo_box_11.GetValue() == "Frequency Shift"):
-            Router(Nums.V2F3.value, Nums.FREQ.value)
+            Router(Nums.VOICE2.value, Nums.FILT3.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn11.SetValue(False)
         elif (self.combo_box_11.GetValue() == "Reverb"):
-            Router(Nums.V2F3.value, Nums.RVRB.value)
+            Router(Nums.VOICE2.value, Nums.FILT3.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn11.SetValue(False)
         elif (self.combo_box_11.GetValue() == "Distortion"):
-            Router(Nums.V2F3.value, Nums.DIST.value)
+            Router(Nums.VOICE2.value, Nums.FILT3.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn11.SetValue(False)
         elif (self.combo_box_11.GetValue() == "None"):
-            Router(Nums.V2F3.value, Nums.NONE.value)
+            Router(Nums.VOICE2.value, Nums.FILT3.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn11.SetValue(False)
 
     def muteV2F3(self, event):
-        Router(Nums.V2F3.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT3.value, Nums.VOICE2.value, self.muteBtn11.GetValue())
 
     def editV2F4(self, event):
         if (self.combo_box_14.GetValue() == "Chorus"):
-            Router(Nums.V2F4.value, Nums.CHOR.value)
+            Router(Nums.VOICE2.value, Nums.FILT4.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn14.SetValue(False)
         elif (self.combo_box_14.GetValue() == "Harmonizer"):
-            Router(Nums.V2F4.value, Nums.HARM.value)
+            Router(Nums.VOICE2.value, Nums.FILT4.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn14.SetValue(False)
         elif (self.combo_box_14.GetValue() == "Frequency Shift"):
-            Router(Nums.V2F4.value, Nums.FREQ.value)
+            Router(Nums.VOICE2.value, Nums.FILT4.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn14.SetValue(False)
         elif (self.combo_box_14.GetValue() == "Reverb"):
-            Router(Nums.V2F4.value, Nums.RVRB.value)
+            Router(Nums.VOICE2.value, Nums.FILT4.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn14.SetValue(False)
         elif (self.combo_box_14.GetValue() == "Distortion"):
-            Router(Nums.V2F4.value, Nums.DIST.value)
+            Router(Nums.VOICE2.value, Nums.FILT4.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn14.SetValue(False)
         elif (self.combo_box_14.GetValue() == "None"):
-            Router(Nums.V2F4.value, Nums.NONE.value)
+            Router(Nums.VOICE2.value, Nums.FILT4.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn14.SetValue(False)
 
     def muteV2F4(self, event):
-        Router(Nums.V2F4.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT4.value, Nums.VOICE2.value, self.muteBtn14.GetValue())
 
     def editV2F5(self, event):
         if (self.combo_box_17.GetValue() == "Chorus"):
-            Router(Nums.V2F5.value, Nums.CHOR.value)
+            Router(Nums.VOICE2.value, Nums.FILT5.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn17.SetValue(False)
         elif (self.combo_box_17.GetValue() == "Harmonizer"):
-            Router(Nums.V2F5.value, Nums.HARM.value)
+            Router(Nums.VOICE2.value, Nums.FILT5.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn17.SetValue(False)
         elif (self.combo_box_17.GetValue() == "Frequency Shift"):
-            Router(Nums.V2F5.value, Nums.FREQ.value)
+            Router(Nums.VOICE2.value, Nums.FILT5.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn17.SetValue(False)
         elif (self.combo_box_17.GetValue() == "Reverb"):
-            Router(Nums.V2F5.value, Nums.RVRB.value)
+            Router(Nums.VOICE2.value, Nums.FILT5.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn17.SetValue(False)
         elif (self.combo_box_17.GetValue() == "Distortion"):
-            Router(Nums.V2F5.value, Nums.DIST.value)
+            Router(Nums.VOICE2.value, Nums.FILT5.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn17.SetValue(False)
         elif (self.combo_box_17.GetValue() == "None"):
-            Router(Nums.V2F5.value, Nums.NONE.value)
+            Router(Nums.VOICE2.value, Nums.FILT5.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn17.SetValue(False)
 
     def muteV2F5(self, event):
-        Router(Nums.V2F5.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT5.value, Nums.VOICE2.value, self.muteBtn17.GetValue())
 
     #VOICE3 and FILTERS
     def editVoice3(self, event):
         if (self.combo_box_3.GetValue() == "Square"):
-            Router(Nums.VOICE3.value, Nums.OSC.value)
+            Router(Nums.VOICE3.value, Nums.PASS.value, Nums.PASS.value, Nums.OSC.value)
+            self.muteBtn3.SetValue(False)
         elif (self.combo_box_3.GetValue() == "Sine"):
-            Router(Nums.VOICE3.value, Nums.SIN.value)
+            Router(Nums.VOICE3.value, Nums.PASS.value, Nums.PASS.value, Nums.SIN.value)
+            self.muteBtn3.SetValue(False)
         elif (self.combo_box_3.GetValue() == "Saw"):
-            Router(Nums.VOICE3.value, Nums.SAW.value)
+            Router(Nums.VOICE3.value, Nums.PASS.value, Nums.PASS.value, Nums.SAW.value)
+            self.muteBtn3.SetValue(False)
         elif (self.combo_box_3.GetValue() == "None"):
-            Router(Nums.VOICE3.value, Nums.NONE.value)
+            Router(Nums.VOICE3.value, Nums.PASS.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn3.SetValue(False)
 
     def muteVoice3(self, event):
-        Router(Nums.MUTEV3.value, self.muteBtn3.GetValue())
+        Router(Nums.MUTEVOICE.value, Nums.PASS.value, Nums.VOICE3.value, self.muteBtn3.GetValue())
 
     def editV3F1(self, event):
         if (self.combo_box_6.GetValue() == "Chorus"):
-            Router(Nums.V3F1.value, Nums.CHOR.value)
+            Router(Nums.VOICE3.value, Nums.FILT1.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn6.SetValue(False)
         elif (self.combo_box_6.GetValue() == "Harmonizer"):
-            Router(Nums.V3F1.value, Nums.HARM.value)
+            Router(Nums.VOICE3.value, Nums.FILT1.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn6.SetValue(False)
         elif (self.combo_box_6.GetValue() == "Frequency Shift"):
-            Router(Nums.V3F1.value, Nums.FREQ.value)
+            Router(Nums.VOICE3.value, Nums.FILT1.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn6.SetValue(False)
         elif (self.combo_box_6.GetValue() == "Reverb"):
-            Router(Nums.V3F1.value, Nums.RVRB.value)
+            Router(Nums.VOICE3.value, Nums.FILT1.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn6.SetValue(False)
         elif (self.combo_box_6.GetValue() == "Distortion"):
-            Router(Nums.V3F1.value, Nums.DIST.value)
+            Router(Nums.VOICE3.value, Nums.FILT1.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn6.SetValue(False)
         elif (self.combo_box_6.GetValue() == "None"):
-            Router(Nums.V3F1.value, Nums.NONE.value)
+            Router(Nums.VOICE3.value, Nums.FILT1.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn6.SetValue(False)
 
     def muteV3F1(self, event):
-        Router(Nums.V3F1.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT1.value, Nums.VOICE3.value, self.muteBtn6.GetValue())
 
     def editV3F2(self, event):
         if (self.combo_box_9.GetValue() == "Chorus"):
-            Router(Nums.V3F2.value, Nums.CHOR.value)
+            Router(Nums.VOICE3.value, Nums.FILT2.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn9.SetValue(False)
         elif (self.combo_box_9.GetValue() == "Harmonizer"):
-            Router(Nums.V3F2.value, Nums.HARM.value)
+            Router(Nums.VOICE3.value, Nums.FILT2.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn9.SetValue(False)
         elif (self.combo_box_9.GetValue() == "Frequency Shift"):
-            Router(Nums.V3F2.value, Nums.FREQ.value)
+            Router(Nums.VOICE3.value, Nums.FILT2.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn9.SetValue(False)
         elif (self.combo_box_9.GetValue() == "Reverb"):
-            Router(Nums.V3F2.value, Nums.RVRB.value)
+            Router(Nums.VOICE3.value, Nums.FILT2.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn9.SetValue(False)
         elif (self.combo_box_9.GetValue() == "Distortion"):
-            Router(Nums.V3F2.value, Nums.DIST.value)
+            Router(Nums.VOICE3.value, Nums.FILT2.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn9.SetValue(False)
         elif (self.combo_box_9.GetValue() == "None"):
-            Router(Nums.V3F2.value, Nums.NONE.value)
+            Router(Nums.VOICE3.value, Nums.FILT2.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn9.SetValue(False)
 
     def muteV3F2(self, event):
-        Router(Nums.V3F2.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT2.value, Nums.VOICE3.value, self.muteBtn9.GetValue())
 
     def editV3F3(self, event):
         if (self.combo_box_12.GetValue() == "Chorus"):
-            Router(Nums.V3F3.value, Nums.CHOR.value)
+            Router(Nums.VOICE3.value, Nums.FILT3.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn12.SetValue(False)
         elif (self.combo_box_12.GetValue() == "Harmonizer"):
-            Router(Nums.V3F3.value, Nums.HARM.value)
+            Router(Nums.VOICE3.value, Nums.FILT3.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn12.SetValue(False)
         elif (self.combo_box_12.GetValue() == "Frequency Shift"):
-            Router(Nums.V3F3.value, Nums.FREQ.value)
+            Router(Nums.VOICE3.value, Nums.FILT3.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn12.SetValue(False)
         elif (self.combo_box_12.GetValue() == "Reverb"):
-            Router(Nums.V3F3.value, Nums.RVRB.value)
+            Router(Nums.VOICE3.value, Nums.FILT3.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn12.SetValue(False)
         elif (self.combo_box_12.GetValue() == "Distortion"):
-            Router(Nums.V3F3.value, Nums.DIST.value)
+            Router(Nums.VOICE3.value, Nums.FILT3.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn12.SetValue(False)
         elif (self.combo_box_12.GetValue() == "None"):
-            Router(Nums.V3F3.value, Nums.NONE.value)
+            Router(Nums.VOICE3.value, Nums.FILT3.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn12.SetValue(False)
 
     def muteV3F3(self, event):
-        Router(Nums.V3F3.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT3.value, Nums.VOICE3.value, self.muteBtn12.GetValue())
 
     def editV3F4(self, event):
         if (self.combo_box_15.GetValue() == "Chorus"):
-            Router(Nums.V3F4.value, Nums.CHOR.value)
+            Router(Nums.VOICE3.value, Nums.FILT4.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn15.SetValue(False)
         elif (self.combo_box_15.GetValue() == "Harmonizer"):
-            Router(Nums.V3F4.value, Nums.HARM.value)
+            Router(Nums.VOICE3.value, Nums.FILT4.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn15.SetValue(False)
         elif (self.combo_box_15.GetValue() == "Frequency Shift"):
-            Router(Nums.V3F4.value, Nums.FREQ.value)
+            Router(Nums.VOICE3.value, Nums.FILT4.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn15.SetValue(False)
         elif (self.combo_box_15.GetValue() == "Reverb"):
-            Router(Nums.V3F4.value, Nums.RVRB.value)
+            Router(Nums.VOICE3.value, Nums.FILT4.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn15.SetValue(False)
         elif (self.combo_box_15.GetValue() == "Distortion"):
-            Router(Nums.V3F4.value, Nums.DIST.value)
+            Router(Nums.VOICE3.value, Nums.FILT4.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn15.SetValue(False)
         elif (self.combo_box_15.GetValue() == "None"):
-            Router(Nums.V3F4.value, Nums.NONE.value)
+            Router(Nums.VOICE3.value, Nums.FILT4.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn15.SetValue(False)
 
     def muteV3F4(self, event):
-        Router(Nums.V3F4.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT4.value, Nums.VOICE3.value, self.muteBtn15.GetValue())
 
     def editV3F5(self, event):
         if (self.combo_box_18.GetValue() == "Chorus"):
-            Router(Nums.V3F5.value, Nums.CHOR.value)
+            Router(Nums.VOICE3.value, Nums.FILT5.value, Nums.PASS.value, Nums.CHOR.value)
+            self.muteBtn18.SetValue(False)
         elif (self.combo_box_18.GetValue() == "Harmonizer"):
-            Router(Nums.V3F5.value, Nums.HARM.value)
+            Router(Nums.VOICE3.value, Nums.FILT5.value, Nums.PASS.value, Nums.HARM.value)
+            self.muteBtn18.SetValue(False)
         elif (self.combo_box_18.GetValue() == "Frequency Shift"):
-            Router(Nums.V3F5.value, Nums.FREQ.value)
+            Router(Nums.VOICE3.value, Nums.FILT5.value, Nums.PASS.value, Nums.FREQ.value)
+            self.muteBtn18.SetValue(False)
         elif (self.combo_box_18.GetValue() == "Reverb"):
-            Router(Nums.V3F5.value, Nums.RVRB.value)
+            Router(Nums.VOICE3.value, Nums.FILT5.value, Nums.PASS.value, Nums.RVRB.value)
+            self.muteBtn18.SetValue(False)
         elif (self.combo_box_18.GetValue() == "Distortion"):
-            Router(Nums.V3F5.value, Nums.DIST.value)
+            Router(Nums.VOICE3.value, Nums.FILT5.value, Nums.PASS.value, Nums.DIST.value)
+            self.muteBtn18.SetValue(False)
         elif (self.combo_box_18.GetValue() == "None"):
-            Router(Nums.V3F5.value, Nums.NONE.value)
+            Router(Nums.VOICE3.value, Nums.FILT5.value, Nums.PASS.value, Nums.NONE.value)
+            self.muteBtn18.SetValue(False)
 
     def muteV3F5(self, event):
-        Router(Nums.V3F5.value, Nums.TOGGLE.value)
+        Router(Nums.MUTEFILTER.value, Nums.FILT5.value, Nums.VOICE3.value, self.muteBtn18.GetValue())
 
 # end of class MyFrame
 
@@ -626,4 +748,4 @@ if __name__ == "__main__":
     app = MyApp(0)
     app.MainLoop()
     #Terminate synth audio.
-    Router(Nums.STOP.value, Nums.PASS.value)
+    Router(Nums.STOP.value, Nums.PASS.value, Nums.PASS.value, Nums.PASS.value)

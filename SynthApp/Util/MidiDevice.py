@@ -1,10 +1,13 @@
 from pyo import *
 from Util.EnumData import Bools, Nums
 import platform
+#Last updated: 01DEC2018
+#This class stores midi I/O data as well as all pyo audio server function calls.
+#Contributing Authors: Avery Anderson
 
 class MidiDevice:
 
-    #Assign input channel and place holders for input values
+    #Assigns input channel and place holders for input values
     def __init__(self):
         self.__device = Bools.NONE.value
         self.__midi = Bools.NONE.value
@@ -45,10 +48,9 @@ class MidiDevice:
         else:
             pass
 
-    #Set midi channel value for server, load and start Server
+    #Set midi channel value for server and load and start Server
     def bootServer(self):
         self._s.boot()
-        # pass
 
     def startServer(self):
         self._s.start()
@@ -58,9 +60,6 @@ class MidiDevice:
 
     def shutdownServer(self):
         self._s.shutdown()
-
-    def setVol(self):
-        self._s.setAmp(20)
 
     #Prep Pyo to accept midi input, convert input to freq and amplitude
     def midiToFreq(self):

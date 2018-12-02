@@ -1,9 +1,9 @@
 from Util import Config
 from Util.EnumData import Bools, Nums
 #Last updated: 01DEC2018
-#This class tells the slimSynthObject to mute or unmute a voice.
+#This class sends user voice selections to the slimSynthObject to be stored.
 #Contributing Authors: Avery Anderson
 
-class ToggleVoiceController:
+class VoiceController:
     def __init__(self, _voice, _input):
-            Config.slimSynthObject.toggleVoice(_voice, _input)
+            Config.slimSynthObject.storeVoice(_voice, _input)
