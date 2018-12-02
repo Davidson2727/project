@@ -7,7 +7,9 @@ from Util.EnumData import Bools, Nums
 
 class SynthController:
     def __init__(self):
-            Config.slimSynthObject.onStartBuildSynth()
-            
+        print('SynthCont1')
+        Config.slimSynthObject.onStartBuildSynth()
+
     def save(self):
-        Config.save()
+        print('SynthCont2')
+        Config.slimSynthObject.save(3)

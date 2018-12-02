@@ -19,6 +19,7 @@ class Router:
         elif((_from == Nums.VOICE1.value and _filter != Nums.PASS.value) or (_from == Nums.VOICE2.value and _filter != Nums.PASS.value) or (_from == Nums.VOICE3.value and _filter != Nums.PASS.value)):
             FilterController(_from, _filter, _input)
         elif(_from == Nums.BOOT.value):
+            print('Router')
             SynthController()
         elif(_from == Nums.SAVE.value):
             SynthController().save()

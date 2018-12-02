@@ -76,13 +76,16 @@ class user(dataObject):
     # a true value means that username or email address already
     # exists, do not create a new user, return error
         # error code taken care of by a utility class?
-    def userNameAndEmailExist():
+    def userNameAndEmailExist(_userName,_email):
+        self._userName = _userName
+        self._email = _email
+        self.read()
 
-        x=1
 
 
     def createUser(self,_userName, _email, _pass):
         print('in createUser',_userName, _email, _pass)
+        userNameAndEmailExist(_userName,_email):
         newId = uuid.uuid4()
         self.setUserId(str(newId.int))
         self.setEmail(_email)

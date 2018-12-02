@@ -23,15 +23,22 @@ class SlimSynthObject(file):
     #an instance of MidiDevice(), sets the default midi I/O channel values,
     #boots the pyo audio server, and begins the synth construction process.
     def onStartBuildSynth(self):
+        print('onStartBuildSynth1')
         self._midiDevice = MidiDevice()
+        print('onStartBuildSynth2')
         self.setIOStartServer()
+        print('onStartBuildSynth3')
         self.buildSynth()
+
 
     #This method is called from the onStartBuildSynth method and it
     #sets the default midi I/O channel values as well as boots the pyo audio server.
     def setIOStartServer(self):
+        print('setIOStartServer1')
         self.setInputChannel(Nums.DEFAULT.value)
+        print('setIOStartServer2')
         self.setOutputChannel(Nums.DEFAULT.value)
+        print('setIOStartServer3')
         self.serverStart()
 
     #This method is called from the onStartBuildSynth method and it translates
@@ -65,8 +72,11 @@ class SlimSynthObject(file):
 
     #This method starts the pyo audio server.
     def serverStart(self):
+        print('serverStart1')
         self._midiDevice.bootServer()
+        print('serverStart2')
         self._midiDevice.startServer()
+        print('serverStart3')
         self._midiDevice.midiToFreq()
 
     #This method calls the pyo audio server boot() function.

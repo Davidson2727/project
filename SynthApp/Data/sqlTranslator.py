@@ -29,7 +29,7 @@ class sqlTranslator:
         query = beginInsert+table+midPoint+values
         sqlTranslator.execute(query)
 
-    def select(object,userName,passWord):
+    def select(object,columns,conditions):
         query = 'SELECT '
         columns = ''
         table = ''
