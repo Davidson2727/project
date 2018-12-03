@@ -5,6 +5,9 @@ from Controllers.SynthController import SynthController
 from Controllers.NewSynthController import NewSynthController
 from Controllers.ToggleVoiceController import ToggleVoiceController
 from Controllers.ToggleFilterController import ToggleFilterController
+from Controllers.StopController import StopController
+from Util.PreTest import PreTest
+from Util import ConfigLoad
 #Last updated: 01DEC2018
 #This class acts as a router that sends user input data to the approriate
 #controller for handling.
@@ -20,9 +23,16 @@ class Router:
             FilterController(_from, _filter, _input)
         elif(_from == Nums.BOOT.value):
             SynthController()
+        elif(_from == Nums.SAVE.value):
+            SynthController().save()
         elif(_from == Nums.REFRESH.value):
             NewSynthController()
         elif(_from == Nums.MUTEVOICE.value):
             ToggleVoiceController(_toggle, _input)
         elif(_from == Nums.MUTEFILTER.value):
             ToggleFilterController(_toggle, _filter, _input)
+        elif(_from == Nums.STOP.value):
+            StopController()
+        elif(_from == Nums.LOAD.value):
+            PreTest()
+            _input.uploadPreset()

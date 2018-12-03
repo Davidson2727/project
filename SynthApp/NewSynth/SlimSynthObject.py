@@ -1,11 +1,12 @@
 from pyo import *
 from Util.EnumData import Bools, Nums
 from Util.MidiDevice import MidiDevice
+from Data.file import file
 #Last updated: 01DEC2018
 #This class handles all synth related functions.
 #Contributing Authors: Avery Anderson
 
-class SlimSynthObject:
+class SlimSynthObject(file):
     def __init__(self):
         self._midiDevice = Bools.NONE.value
         self._waves = [Nums.NONE.value] * Nums.THREE.value
@@ -13,11 +14,23 @@ class SlimSynthObject:
         self._voices = [Nums.NONE.value] * Nums.THREE.value
         self._voiceFilters = [[Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value]
         self._wave = Nums.NONE.value
+        self._quitOnStart = Bools.TBOOL.value
+
+    def __dir__(self):
+        return ['_voiceFilters','_voices']
+
+    def load(self, _voices, _voiceFilters):
+        for i in range (len(self._voices)):
+            self._voices[i] = _voices[i]
+            for j in range (len(self._voiceFilters[i])):
+                self._voiceFilters[i][j] = _voiceFilters[i][j]
+        self.onStartBuildSynth()
 
     #When "Boot" is selected from the menu bar this method creates or overwrites
     #an instance of MidiDevice(), sets the default midi I/O channel values,
     #boots the pyo audio server, and begins the synth construction process.
     def onStartBuildSynth(self):
+        self._quitOnStart = Bools.FBOOL.value
         self._midiDevice = MidiDevice()
         self.setIOStartServer()
         self.buildSynth()
@@ -80,6 +93,14 @@ class SlimSynthObject:
     def shutdown(self):
         self._midiDevice.shutdownServer()
 
+    def close(self):
+        if(self._quitOnStart == Bools.TBOOL.value):
+            exit(self)
+        else:
+            self.kill()
+            self.shutdown()
+            exit(self)
+
     #This method assigns and stores user selections for voices 1, 2, and 3 as
     #integers corresponding to the indices of self._voices.
     def storeVoice(self, _voice, _input):
@@ -119,8 +140,8 @@ class SlimSynthObject:
     def assignWave(self, _voice, _input):
         if(_voice == Nums.NONE.value):
             pass
-        elif(_voice == Nums.SIN.value):
-            self._waves[_input] = Sine(freq=self._midiDevice.getPitch(), mul=self._midiDevice.getAmp())
+        elif(_voice == Nums.PHS.value):
+            self._waves[_input] = Phasor(freq=self._midiDevice.getPitch(), mul=self._midiDevice.getAmp())
         elif(_voice == Nums.OSC.value):
             self._waves[_input] = Osc(SquareTable(), freq=self._midiDevice.getPitch(), mul=self._midiDevice.getAmp())
         elif(_voice == Nums.SAW.value):
@@ -138,10 +159,10 @@ class SlimSynthObject:
             self._waveFilters[_voice][_filter] = Chorus(_wave)
         elif(self._voiceFilters[_voice][_filter] == Nums.HARM.value):
             self._waveFilters[_voice][_filter] = Harmonizer(_wave)
-        elif(self._voiceFilters[_voice][_filter] == Nums.FREQ.value):
-            self._waveFilters[_voice][_filter] = FreqShift(_wave)
         elif(self._voiceFilters[_voice][_filter] == Nums.RVRB.value):
-            self._waveFilters[_voice][_filter] = WGVerb(_wave)
+            self._waveFilters[_voice][_filter] = Freeverb(_wave)
+        elif(self._voiceFilters[_voice][_filter] == Nums.DLAY.value):
+            self._waveFilters[_voice][_filter] = SmoothDelay(_wave)
         elif(self._voiceFilters[_voice][_filter] == Nums.DIST.value):
             self._waveFilters[_voice][_filter] = Disto(_wave)
 
@@ -157,7 +178,7 @@ class SlimSynthObject:
             if(self._waves[i] != Nums.NONE.value):
                 self._waves[i].out()
                 self._wave = self._waves[i]
-                for j in range(len(self._waveFilters)):
+                for j in range(len(self._waveFilters[i])):
                     self.assignFilter(i, j, self._wave)
                     if(self._waveFilters[i][j] != Nums.NONE.value):
                         self._waveFilters[i][j].out()
