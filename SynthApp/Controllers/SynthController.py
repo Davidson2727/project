@@ -9,6 +9,8 @@ class SynthController:
     def __init__(self):
             Config.slimSynthObject.onStartBuildSynth()
 
-    def save(self):
-        print('SynthCont2')
-        Config.slimSynthObject.save(3)
+    def save(self, _input):
+        Config.slimSynthObject.save(_input)
+
+    def loadLocal(self, _input):
+        Config.slimSynthObject.loadLocal(_input)

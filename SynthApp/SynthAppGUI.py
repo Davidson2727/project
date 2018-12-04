@@ -6,6 +6,7 @@
 
 import wx
 from Util.EnumData import Bools, Nums
+from Util.LoginDialog import MainFrame
 from Controllers.Router import Router
 from Util import ConfigLoad
 
@@ -138,23 +139,37 @@ class MyFrame(wx.Frame):
 
         # Menu Bar
         self.frame_menubar = wx.MenuBar()
-        wxglade_tmp_menu = wx.Menu()
-        item = wxglade_tmp_menu.Append(wx.ID_ANY, "Set Input Device", "")
-        self.Bind(wx.EVT_MENU, self.setInputMidi, id=item.GetId())
-        item = wxglade_tmp_menu.Append(wx.ID_ANY, "Set Output Device", "")
-        self.Bind(wx.EVT_MENU, self.setOutputMidi, id=item.GetId())
-        self.frame_menubar.Append(wxglade_tmp_menu, "Set I/O Device")
-        wxglade_tmp_menu = wx.Menu()
 
-        item = wxglade_tmp_menu.Append(wx.ID_ANY, "Save Current Preset", "")
-        self.Bind(wx.EVT_MENU, self.savePreset, id=item.GetId())
-        item = wxglade_tmp_menu.Append(wx.ID_ANY, "Load Preset", "")
-        self.Bind(wx.EVT_MENU, self.loadPreset, id=item.GetId())
+        wxglade_tmp_menu = wx.Menu()
+        item = wxglade_tmp_menu.Append(wx.ID_ANY, "Sign up", "")
+        self.Bind(wx.EVT_MENU, self.signUp, id=item.GetId())
+        item = wxglade_tmp_menu.Append(wx.ID_ANY, "Login", "")
+        self.Bind(wx.EVT_MENU, self.login, id=item.GetId())
+        self.frame_menubar.Append(wxglade_tmp_menu, "User")
+
+        wxglade_tmp_menu = wx.Menu()
+        menu2 = wx.Menu()
+        item = menu2.Append(wx.ID_ANY, "To Cloud", "")
+        item = menu2.Append(wx.ID_ANY, "Local", "")
+        self.Bind(wx.EVT_MENU, self.saveLocal, id=item.GetId())
+        wxglade_tmp_menu.Append(wx.ID_ANY, "Save Current Preset", menu2)
+        menu3 = wx.Menu()
+        item = menu3.Append(wx.ID_ANY, "From Cloud", "")
+        item = menu3.Append(wx.ID_ANY, "Local", "")
+        self.Bind(wx.EVT_MENU, self.loadLocal, id=item.GetId())
+        wxglade_tmp_menu.Append(wx.ID_ANY, "Load", menu3)
         item = wxglade_tmp_menu.Append(wx.ID_ANY, "Build New Preset", "")
         self.Bind(wx.EVT_MENU, self.newPreset, id=item.GetId())
         self.frame_menubar.Append(wxglade_tmp_menu, "Save/Load/New Preset")
-        wxglade_tmp_menu = wx.Menu()
 
+        # wxglade_tmp_menu = wx.Menu()
+        # menu2 = wx.Menu()
+        # item = menu2.Append(wx.ID_ANY, "Load", "")
+        # wxglade_tmp_menu.Append(wx.ID_ANY, "From Cloud", menu2)
+        # self.frame_menubar.Append(wxglade_tmp_menu, "Preset")
+
+
+        wxglade_tmp_menu = wx.Menu()
         item = wxglade_tmp_menu.Append(wx.ID_ANY, "Boot", "")
         self.Bind(wx.EVT_MENU, self.bootAudioServer, id=item.GetId())
         self.frame_menubar.Append(wxglade_tmp_menu, "Boot Audio Server")
@@ -257,18 +272,49 @@ class MyFrame(wx.Frame):
         # end wxGlade
 
     #Menu bar events
-    def setInputMidi(self, event):  # wxGlade: MyFrame.<event_handler>
-        print("Event handler 'setInputMidi' not implemented!")
-        event.Skip()
+    def signUp(self, event):  # wxGlade: MyFrame.<event_handler>
+        app = wx.App()
 
-    def setOutputMidi(self, event):  # wxGlade: MyFrame.<event_handler>
-        print("Event handler 'setOutputMidi' not implemented!")
-        event.Skip()
+        frame = wx.Frame(None, -1, 'win.py')
+        frame.SetSize(0,0,200,50)
 
-    def savePreset(self, event):  # wxGlade: MyFrame.<event_handler>
-        Router(Nums.SAVE.value,Nums.PASS.value,Nums.PASS.value,Nums.PASS.value)
-        print("Event handler 'savePreset' not implemented!")
-        event.Skip()
+        # Create text input
+        userName = wx.TextEntryDialog(frame, 'Enter a User Name.','Text Entry')
+        userName.SetValue("")
+        if userName.ShowModal() == wx.ID_OK:
+            print('You entered: %s\n' % userName.GetValue())
+            userName.Destroy()
+        email = wx.TextEntryDialog(frame, 'Enter your email address.','Text Entry')
+        email.SetValue("")
+        if email.ShowModal() == wx.ID_OK:
+            print('You entered: %s\n' % email.GetValue())
+            email.Destroy()
+        password = wx.TextEntryDialog(frame, 'Enter a password','Text Entry')
+        password.SetValue("")
+        if password.ShowModal() == wx.ID_OK:
+            print('You entered: %s\n' % password.GetValue())
+            password.Destroy()
+
+    def login(self, event):  # wxGlade: MyFrame.<event_handler>
+        self.loginDialogue()
+
+    def saveLocal(self, event):  # wxGlade: MyFrame.<event_handler>
+        with wx.FileDialog(self, "Save txt file", wildcard="txt files (*.txt)|*.txt",
+                       style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
+
+            if fileDialog.ShowModal() == wx.ID_CANCEL:
+                return     # the user changed their mind
+
+            # save the current contents in the file
+            pathname = fileDialog.GetPath()
+            filename = fileDialog.GetFilename()
+            output = [pathname, filename]
+            #Router(Nums.SAVE.value,Nums.PASS.value,Nums.PASS.value,output)
+            try:
+                Router(Nums.SAVE.value,Nums.PASS.value,Nums.PASS.value,output)
+            except IOError:
+                wx.LogError("Cannot save current data in file '%s'." % pathname)
+
 
     def uploadPreset(self):
         self.combo_box_1.SetSelection(ConfigLoad.loadBay.getVoices(0))
@@ -307,6 +353,25 @@ class MyFrame(wx.Frame):
         self.muteBtn16.SetValue(False)
         self.muteBtn17.SetValue(False)
         self.muteBtn18.SetValue(False)
+
+    def loadLocal(self,evt):
+        with wx.FileDialog(self, "Open .txt file", wildcard="txt files (*.txt)|*.txt",style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+
+            if fileDialog.ShowModal() == wx.ID_CANCEL:
+                return     # the user changed their mind
+
+            # Proceed loading the file chosen by the user
+            pathname = fileDialog.GetPath()
+            try:
+                Router(Nums.LOCAL.value, Nums.PASS.value, self, pathname)
+                # with open(pathname, 'r') as file:
+                    #################################################
+                    #here the file is accepted, now load it
+                    #################################################
+                    # self.createButtons(file)
+                pass
+            except IOError:
+                wx.LogError("Cannot open file '%s'." % newfile)
 
     def loadPreset(self, event):  # wxGlade: MyFrame.<event_handler>
         Router(Nums.LOAD.value, Nums.PASS.value, Nums.PASS.value, self)

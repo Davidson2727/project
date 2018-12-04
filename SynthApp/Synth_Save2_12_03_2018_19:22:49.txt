@@ -1,0 +1,3 @@
+~SlimSynthObject~SlimSynthObject~"str"
+~_voiceFilters~[[0, 0, 0, 0, 0], '"list"', [0, 0, 0, 0, 0], '"list"', [0, 0, 0, 0, 0], '"list"']~"list"
+~_voices~[1, '"int"', 2, '"int"', 3, '"int"']~"list"

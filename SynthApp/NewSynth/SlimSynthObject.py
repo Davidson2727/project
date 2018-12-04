@@ -1,6 +1,7 @@
 from pyo import *
 from Util.EnumData import Bools, Nums
 from Util.MidiDevice import MidiDevice
+from Util import ConfigLoad
 from Data.file import file
 #Last updated: 01DEC2018
 #This class handles all synth related functions.
@@ -14,17 +15,35 @@ class SlimSynthObject(file):
         self._voices = [Nums.NONE.value] * Nums.THREE.value
         self._voiceFilters = [[Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value]
         self._wave = Nums.NONE.value
+        self._temp1 = Nums.NONE.value
+        self._temp2 = Nums.NONE.value
         self._quitOnStart = Bools.TBOOL.value
 
     def __dir__(self):
         return ['_voiceFilters','_voices']
 
-    def load(self, _voices, _voiceFilters):
-        for i in range (len(self._voices)):
-            self._voices[i] = _voices[i]
-            for j in range (len(self._voiceFilters[i])):
-                self._voiceFilters[i][j] = _voiceFilters[i][j]
+    def loadLocal(self, _input):
+        self._temp1 = self._voices
+        self._temp2 = self._voiceFilters
+        self.load(_input)
+        for i in range(0,36,12):
+            self._temp1[i//12] = int(self._voices[i+1])
+        self._voices = self._temp1
+        for i in range(0, 13, 3):
+            self._temp2[0][i//3] = int(self._voiceFilters[i+2])
+            self._temp2[1][i//3] = int(self._voiceFilters[i+29])
+            self._temp2[2][i//3] = int(self._voiceFilters[i+56])
+        self._voiceFilters = self._temp2
+        ConfigLoad.loadBay.setVoices(self._voices)
+        ConfigLoad.loadBay.setVoiceFilters(self._voiceFilters)
         self.onStartBuildSynth()
+
+    # def loadPreset(self, _voices, _voiceFilters):
+    #     # for i in range (len(self._voices)):
+    #     #     self._voices[i] = _voices[i]
+    #     #     for j in range (len(self._voiceFilters[i])):
+    #     #         self._voiceFilters[i][j] = _voiceFilters[i][j]
+    #     self.onStartBuildSynth()
 
     #When "Boot" is selected from the menu bar this method creates or overwrites
     #an instance of MidiDevice(), sets the default midi I/O channel values,
@@ -178,8 +197,10 @@ class SlimSynthObject(file):
             if(self._waves[i] != Nums.NONE.value):
                 self._waves[i].out()
                 self._wave = self._waves[i]
+                print(self._wave)
                 for j in range(len(self._waveFilters[i])):
                     self.assignFilter(i, j, self._wave)
                     if(self._waveFilters[i][j] != Nums.NONE.value):
                         self._waveFilters[i][j].out()
                         self._wave = self._waveFilters[i][j]
+                        print(self._wave)

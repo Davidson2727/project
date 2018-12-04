@@ -43,3 +43,4 @@ class Nums(IntEnum):
     MUTEFILTER = 30
     SAVE = 50
     LOAD = 160
+    LOCAL = 150

@@ -24,7 +24,7 @@ class Router:
         elif(_from == Nums.BOOT.value):
             SynthController()
         elif(_from == Nums.SAVE.value):
-            SynthController().save()
+            SynthController().save(_input)
         elif(_from == Nums.REFRESH.value):
             NewSynthController()
         elif(_from == Nums.MUTEVOICE.value):
@@ -36,3 +36,6 @@ class Router:
         elif(_from == Nums.LOAD.value):
             PreTest()
             _input.uploadPreset()
+        elif(_from == Nums.LOCAL.value):
+            SynthController().loadLocal(_input)
+            _toggle.uploadPreset()

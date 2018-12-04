@@ -31,9 +31,9 @@ class file(dataObject):
     def getCreateDate(self):
         return self._createDate
 
-    def save(self,saveCommand):
+    def save(self,_input):
         self.setCreateDate()
-        self.setFileName('Synth_Save2')
+        self.setFileName(_input[1])
         self._contents = 'empty'
         self._type = 'empty'
         self._userName = 'empty'
@@ -46,33 +46,32 @@ class file(dataObject):
             self._userId = Config.sysUser.getUserId()
         self._activeStatus = '1'
         proof = buildDict(self)
-        fileName = self.getFileName()+'_'+self.getCreateDate()+'.txt'
-        f = open(fileName,"w+")
+        #fileName = self.getFileName()+'_'+self.getCreateDate()+'.txt'
+        path = _input[0]
+        f = open(path,"w+")
         for k,v in proof.items():
             vType = writeType(v)
             f.write('~%s~%s~%s\n'%(k,v,vType))
         f.read()
         f.close()
-        file = open(fileName)
+        file = open(path)
         contentsString = ""
         self._contents = file.read()
         file.close()
-        if saveCommand == 3:
-            if Config.sysUser.getUserName()==None:
-                return 'error'
-            else:
-                self._userName = Config.sysUser.getUserName()
-                self._userId = Config.sysUser.getUserId()
-                self.create('fileSchema')
+        #if saveCommand == 3:
+            # if Config.sysUser.getUserName()==None:
+            #     return 'error'
+            # else:
+            #     self._userName = Config.sysUser.getUserName()
+            #     self._userId = Config.sysUser.getUserId()
+            #     self.create('fileSchema')
 
-    def load(self,fileName):
-            fileNameTxT += fileName+'.txt'
-            lines = [line.rstrip('\n') for line in open(fileNameTxT)]
+    def load(self,path):
+            lines = [line.rstrip('\n') for line in open(path)]
             for i in lines:
                 keyValue = i.split('~')
                 if keyValue[1][0] == '#':
                     buildObject(keyValue[1],keyValue[2],keyValue[3])
                 if hasattr(self,keyValue[1]):
-
                     keyValue[2] = readType(keyValue[2],keyValue[3])
                     setattr(self,keyValue[1],keyValue[2])
