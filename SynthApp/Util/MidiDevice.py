@@ -17,29 +17,49 @@ class MidiDevice:
             self._s = Server(duplex = 0)
         else:
             self._s = Server()
-        # self._s.boot()
+
+
+    def bootServer(self):
+        self._s.boot()
+
 
     def getDevice(self):
         return self.__device
 
+
     def getPitch(self):
         return self.__pitch
+
 
     def getAmp(self):
         return self.__amp
 
+
     def getServer(self):
         return self._s
+
+
+    def midiToFreq(self):
+        self.__midi = Notein()
+        self.__pitch = MToF(self.__midi['pitch'])
+        self.__amp = MidiAdsr(self.__midi['velocity'])
+
 
     def setDevice(self, _input):
         self.__device = _input
 
-    #Run output with WXPython GUI
-    def toGui(self):
-        self._s.gui(locals())
+
+    def setPitch(self, _input):
+        self.__pitch = _input
+
+
+    def setAmp(self, _input):
+        self.__amp = _input
+
 
     def setIn(self):
         self._s.setMidiInputDevice(self.__device)
+
 
     def setOut(self):
         if platform.system() == 'Linux':
@@ -48,21 +68,18 @@ class MidiDevice:
         else:
             pass
 
-    #Set midi channel value for server and load and start Server
-    def bootServer(self):
-        self._s.boot()
 
     def startServer(self):
         self._s.start()
 
+
     def stopServer(self):
         self._s.stop()
+
 
     def shutdownServer(self):
         self._s.shutdown()
 
-    #Prep Pyo to accept midi input, convert input to freq and amplitude
-    def midiToFreq(self):
-        self.__midi = Notein()
-        self.__pitch = MToF(self.__midi['pitch'])
-        self.__amp = MidiAdsr(self.__midi['velocity'])
+
+    def toGui(self):
+        self._s.gui(locals())

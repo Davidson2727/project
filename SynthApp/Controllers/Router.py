@@ -7,12 +7,11 @@ from Controllers.ToggleVoiceController import ToggleVoiceController
 from Controllers.ToggleFilterController import ToggleFilterController
 from Controllers.StopController import StopController
 from Controllers.UserController import UserController
-from Util.PreTest import PreTest
 from Util import ConfigLoad
 #Last updated: 01DEC2018
 #This class acts as a router that sends user input data to the approriate
 #controller for handling.
-#Contributing Authors: Avery Anderson
+#Contributing Authors: Avery Anderson, Jacob Butler, Cameron Raissi
 
 class Router:
     def __init__(self, _from, _filter, _toggle, _input):
@@ -34,13 +33,10 @@ class Router:
             ToggleFilterController(_toggle, _filter, _input)
         elif(_from == Nums.STOP.value):
             StopController()
-        elif(_from == Nums.LOAD.value):
-            PreTest()
-            _input.uploadPreset()
         elif(_from == Nums.LOCAL.value):
             SynthController().loadLocal(_input)
             _toggle.uploadPreset()
         elif(_from == Nums.LOGIN.value):
             UserController().login(_input)
-        # elif(_from == Nums.GETUSER.value):
-        #     return UserController().GetCurrentUser()
+        elif(_from == Nums.SIGNUP.value):
+            UserController().signUp(_input)

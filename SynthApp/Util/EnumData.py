@@ -10,6 +10,7 @@ class Bools(Enum):
     TBOOL = True
     FBOOL = False
 
+
 #Contains integer type enumerated constants.
 class Nums(IntEnum):
     START = 100
@@ -39,6 +40,15 @@ class Nums(IntEnum):
     RVRB = 3
     DLAY = 4
     DIST = 5
+    TRANSZERO = 0
+    TRANSONE = 1
+    TRANSTWO = 2
+    TRANSTHREE = 3
+    TRANSTWELVE = 12
+    TRANSTHIRTEEN = 13
+    TRANSTWONINE = 29
+    TRANSTHREESIX = 36
+    TRANSFIVESIX = 56
     MUTEVOICE = 20
     MUTEFILTER = 30
     SAVE = 50
@@ -46,3 +56,4 @@ class Nums(IntEnum):
     LOCAL = 150
     LOGIN = 51
     GETUSER = 52
+    SIGNUP = 53
