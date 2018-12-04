@@ -5,13 +5,15 @@ from Data.setType import readType, writeType
 from Data.buildDict import buildDict
 from Data.buildObj import buildObject
 from Util import Config
+from Util.EnumData import Bools, Nums
+import os
 
 class file(dataObject):
     def __init__(self):
         self._userId = None
         self._userName = None
         self._fileName = None
-        self._createDate = None
+        self._createDate = makeDate()
         self._type = None
         self._contents= None
         self._activeStatus = None
@@ -32,39 +34,31 @@ class file(dataObject):
         return self._createDate
 
     def save(self,_input):
-        self.setCreateDate()
-        self.setFileName(_input[1])
-        self._contents = 'empty'
-        self._type = 'empty'
-        self._userName = 'empty'
-        self._userId = 'empty'
-        if Config.sysUser.getUserName()==None:
-            self._userName = 'empty'
-            self._userId = 'empty'
-        else:
-            self._userName = Config.sysUser.getUserName()
-            self._userId = Config.sysUser.getUserId()
+        self.setFileName(_input[2])
         self._activeStatus = '1'
         proof = buildDict(self)
         #fileName = self.getFileName()+'_'+self.getCreateDate()+'.txt'
-        path = _input[0]
+
+        path = _input[1]
         f = open(path,"w+")
         for k,v in proof.items():
             vType = writeType(v)
             f.write('~%s~%s~%s\n'%(k,v,vType))
         f.read()
         f.close()
-        file = open(path)
-        contentsString = ""
-        self._contents = file.read()
-        file.close()
-        #if saveCommand == 3:
-            # if Config.sysUser.getUserName()==None:
-            #     return 'error'
-            # else:
-            #     self._userName = Config.sysUser.getUserName()
-            #     self._userId = Config.sysUser.getUserId()
-            #     self.create('fileSchema')
+        print('before cloud save')
+        print(_input[0])
+        if _input[0]!=Nums.SAVE.value:
+            file = open(path)
+            contentsString = ""
+            self._contents = file.read()
+            file.close()
+            os.remove(path)
+            self._userName = Config.sysUser.getUserName()
+            self._userId = Config.sysUser.getUserId()
+            self._type = self.__class__.__name__
+            print('$$$$$$$$$$$$$$$$$$$$$')
+            self.create('fileSchema')
 
     def load(self,path):
             lines = [line.rstrip('\n') for line in open(path)]

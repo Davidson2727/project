@@ -9,6 +9,7 @@ from Data.file import file
 
 class SlimSynthObject(file):
     def __init__(self):
+        super(SlimSynthObject,self).__init__()
         self._midiDevice = Bools.NONE.value
         self._waves = [Nums.NONE.value] * Nums.THREE.value
         self._waveFilters = [[Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value]
@@ -20,12 +21,19 @@ class SlimSynthObject(file):
         self._quitOnStart = Bools.TBOOL.value
 
     def __dir__(self):
-        return ['_voiceFilters','_voices']
+        parentAttr = super().__dir__()
+        parentAttr.append('_voiceFilters')
+        parentAttr.append('_voices')
+        return parentAttr
 
     def loadLocal(self, _input):
+        self._waves = [Nums.NONE.value] * Nums.THREE.value
+        self._waveFilters = [[Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value]
         self._temp1 = self._voices
         self._temp2 = self._voiceFilters
         self.load(_input)
+        print(self._voices)
+        print(self._voiceFilters)
         for i in range(0,36,12):
             self._temp1[i//12] = int(self._voices[i+1])
         self._voices = self._temp1
@@ -44,6 +52,12 @@ class SlimSynthObject(file):
     #     #     for j in range (len(self._voiceFilters[i])):
     #     #         self._voiceFilters[i][j] = _voiceFilters[i][j]
     #     self.onStartBuildSynth()
+
+    #This method clears any active waveforms and filters.
+    def clearAndBuild(self):
+        self._waves = [Nums.NONE.value] * Nums.THREE.value
+        self._waveFilters = [[Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value, [Nums.NONE.value] * Nums.FIVE.value]
+        self.onStartBuildSynth()
 
     #When "Boot" is selected from the menu bar this method creates or overwrites
     #an instance of MidiDevice(), sets the default midi I/O channel values,
@@ -78,8 +92,7 @@ class SlimSynthObject(file):
             self.storeVoice(i, Nums.NONE.value)
             for j in range(len(self._voiceFilters)):
                 self.storeFilter(i, j, Nums.NONE.value)
-        self.onStartBuildSynth()
-
+        self.clearAndBuild()
     #This method sets the midi input channel.
     def setInputChannel(self, _input):
             self._midiDevice.setDevice(_input)
@@ -197,10 +210,13 @@ class SlimSynthObject(file):
             if(self._waves[i] != Nums.NONE.value):
                 self._waves[i].out()
                 self._wave = self._waves[i]
-                print(self._wave)
+                print(self._waves[i])
                 for j in range(len(self._waveFilters[i])):
                     self.assignFilter(i, j, self._wave)
                     if(self._waveFilters[i][j] != Nums.NONE.value):
                         self._waveFilters[i][j].out()
                         self._wave = self._waveFilters[i][j]
-                        print(self._wave)
+                        print(self._waveFilters[i][j])
+        print("###################")
+        print("###################")
+        print("###################")

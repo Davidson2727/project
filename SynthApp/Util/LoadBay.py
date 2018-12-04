@@ -6,7 +6,6 @@ class LoadBay:
         self._voiceFilters = Nums.NONE.value
 
     def getVoices(self, _voice):
-        print(self._voices)
         return self._voices[_voice]
 
     def getVoiceFilters(self, _voice, _filter):

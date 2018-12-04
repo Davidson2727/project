@@ -1,24 +1,12 @@
 import wx
+from Controllers.Router import Router
+from Util.EnumData import Bools, Nums
 
-if "2.8" in wx.version():
-    import wx.lib.pubsub.setupkwargs
-    from wx.lib.pubsub import pub
-else:
-    from wx.lib.pubsub import pub
-
-
-########################################################################
 class LoginDialog(wx.Dialog):
-    """
-    Class to define login dialog
-    """
 
-    #----------------------------------------------------------------------
     def __init__(self):
-        """Constructor"""
         wx.Dialog.__init__(self, None, title="Login")
 
-        # user info
         user_sizer = wx.BoxSizer(wx.HORIZONTAL)
 
         user_lbl = wx.StaticText(self, label="Username:")
@@ -26,7 +14,6 @@ class LoginDialog(wx.Dialog):
         self.user = wx.TextCtrl(self)
         user_sizer.Add(self.user, 0, wx.ALL, 5)
 
-        # pass info
         p_sizer = wx.BoxSizer(wx.HORIZONTAL)
 
         p_lbl = wx.StaticText(self, label="Password:")
@@ -44,53 +31,8 @@ class LoginDialog(wx.Dialog):
 
         self.SetSizer(main_sizer)
 
-    #----------------------------------------------------------------------
     def onLogin(self, event):
-        """
-        Check credentials and login
-        """
-        stupid_password = "pa$$w0rd!"
-        user_password = self.password.GetValue()
-        if user_password == stupid_password:
-            print "You are now logged in!"
-            pub.sendMessage("frameListener", message="show")
-            self.Destroy()
-        else:
-            print "Username or password is incorrect!"
-
-########################################################################
-class MyPanel(wx.Panel):
-    """"""
-
-    #----------------------------------------------------------------------
-    def __init__(self, parent):
-        """Constructor"""
-        wx.Panel.__init__(self, parent)
-
-
-########################################################################
-class MainFrame(wx.Frame):
-    """"""
-
-    #----------------------------------------------------------------------
-    def __init__(self):
-        """Constructor"""
-        wx.Frame.__init__(self, None, title="Main App")
-        panel = MyPanel(self)
-        pub.subscribe(self.myListener, "frameListener")
-
-        # Ask user to login
-        dlg = LoginDialog()
-        dlg.ShowModal()
-
-    #----------------------------------------------------------------------
-    def myListener(self, message, arg2=None):
-        """
-        Show the frame
-        """
-        self.Show()
-
-if __name__ == "__main__":
-    app = wx.App(False)
-    frame = MainFrame()
-    app.MainLoop()
+        values = [self.user.GetValue(),self.password.GetValue()]
+        Router(Nums.LOGIN.value,Nums.PASS.value,Nums.PASS.value,values)
+        self.EndModal(wx.ID_CANCEL)
+        self.Destroy()

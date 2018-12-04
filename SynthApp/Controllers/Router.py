@@ -6,6 +6,7 @@ from Controllers.NewSynthController import NewSynthController
 from Controllers.ToggleVoiceController import ToggleVoiceController
 from Controllers.ToggleFilterController import ToggleFilterController
 from Controllers.StopController import StopController
+from Controllers.UserController import UserController
 from Util.PreTest import PreTest
 from Util import ConfigLoad
 #Last updated: 01DEC2018
@@ -39,3 +40,7 @@ class Router:
         elif(_from == Nums.LOCAL.value):
             SynthController().loadLocal(_input)
             _toggle.uploadPreset()
+        elif(_from == Nums.LOGIN.value):
+            UserController().login(_input)
+        # elif(_from == Nums.GETUSER.value):
+        #     return UserController().GetCurrentUser()

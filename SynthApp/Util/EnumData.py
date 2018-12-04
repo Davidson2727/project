@@ -44,3 +44,5 @@ class Nums(IntEnum):
     SAVE = 50
     LOAD = 160
     LOCAL = 150
+    LOGIN = 51
+    GETUSER = 52
