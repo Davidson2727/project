@@ -1,5 +1,10 @@
 from collections import OrderedDict
 from Data.setType import writeType
+#Last updated: 04DEC2018
+#This file receives objects and prepares an ordered dictionary
+#of that object's attributes.
+#Contributing Authors: Jacob Butler
+
 def buildDict(_obj):
     # create an OrderedDict object
     myDict = OrderedDict()
@@ -7,7 +12,7 @@ def buildDict(_obj):
     # add '#' to the front of it to identify it as a object
     # when reconstructing later.
     #objNameType ='#'+_obj.__class__.__name__
-    objNameType =_obj.__class__.__name__
+    objNameType = _obj.__class__.__name__
 
     # add the object name as key and 'Value' as value to the dictionary
     myDict[objNameType] = _obj.__class__.__name__
@@ -21,13 +26,13 @@ def buildDict(_obj):
     for i in dir(_obj):
         attrName = i
         # get the value of the attribute
-        v = getattr(_obj,i)
+        v = getattr(_obj, i)
         # get the type of the attribute
         thisType = v.__class__.__name__
         # verify the attribute is not primitive
         primitive = not hasattr(v, '__dict__')
         # if v is a list
-        if(type(v)==type([])):
+        if(type(v) == type([])):
             # iterate through the list
             newList = []
             for j in range(len(v)):
@@ -55,7 +60,7 @@ def buildDict(_obj):
                 objList.append(key)
                 objList.append(str(value))
                 objList.append(writeType(value))
-            myDict['#'+attrName] = objList
+            myDict['#' + attrName] = objList
             # iterate through the subObjects dictionary and add it to
             # this dictionary
             #for attribute, value in objDict.items():

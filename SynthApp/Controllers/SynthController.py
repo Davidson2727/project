@@ -2,14 +2,18 @@ from Util import Config
 from Util.EnumData import Bools, Nums
 #Last updated: 01DEC2018
 #This class tells the slimSynthObject to assign midi I/O channels,
-#start the pyo audio server, and begin the audio filtering process.
+#start the pyo audio server, begin the audio filtering process,
+#save current presets, and load presets.
 #Contributing Authors: Avery Anderson
 
 class SynthController:
     def __init__(self):
-        print('SynthCont1')
-        Config.slimSynthObject.onStartBuildSynth()
+        Config.slimSynthObject.clearAndBuild()
 
-    def save(self):
-        print('SynthCont2')
-        Config.slimSynthObject.save(3)
+
+    def loadLocal(self, _input):
+        Config.slimSynthObject.loadLocal(_input)
+
+
+    def save(self, _input):
+        Config.slimSynthObject.save(_input)

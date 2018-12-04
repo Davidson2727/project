@@ -1,8 +1,10 @@
-
 import math
+#Last updated: 04DEC2018
+#This file preserves the data types for synth attributes
+#for saving and loading presets.
+#Contributing Authors: Jacob Butler
 
-
-def readType(_value,_type):
+def readType(_value, _type):
     if _type == 'int':
         return int(_value)
     elif _type == 'float':
@@ -18,12 +20,12 @@ def readType(_value,_type):
         for i in range(len(value)):
             value[i] = value[i].strip()
             value[i] = value[i].strip("'")
-        z=0
-        listLength = math.ceil(len(value)/2)
+        z = 0
+        listLength = math.ceil(len(value) / 2)
         returnList = []
         while z <= listLength:
-            returnList.append(readType(value[z],value[z+1]))
-            z+=2
+            returnList.append(readType(value[z],value[z + 1]))
+            z += 2
 
 
         return returnList
@@ -37,9 +39,9 @@ def writeType(_value):
     value = _value
     thisType = str(type(value)).split()
     thisType[1] = thisType[1].replace('>','')
-    thisType =thisType[1].split()
-    thisType =thisType[0].split('.')
+    thisType = thisType[1].split()
+    thisType = thisType[0].split('.')
     thisType = thisType[-1].replace("'",'')
-    thisType = '"'+thisType+'"'
+    thisType = '"' + thisType + '"'
 
     return thisType
